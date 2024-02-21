@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>364398567313-v1ngerofav5b7ec836pcuheful68tq4p.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.364398567313-v1ngerofav5b7ec836pcuheful68tq4p</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>364398567313-8t8g77gfeaids4m3e7gd4ril0prp8udc.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCmp5zoCxCaCtbQyZbHXEmzupHtoHgPlDo</string>
+	<key>GCM_SENDER_ID</key>
+	<string>364398567313</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.TimeSharing.com</string>
+	<key>PROJECT_ID</key>
+	<string>timeshare-abb58</string>
+	<key>STORAGE_BUCKET</key>
+	<string>timeshare-abb58.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:364398567313:ios:7d40afb06ee61679f68430</string>
+</dict>
+</plist>
