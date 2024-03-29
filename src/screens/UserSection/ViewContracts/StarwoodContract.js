@@ -149,97 +149,42 @@ import {
       }
       return false;
     };
-    // const validation = () => {
-    //   const ifChecqueMethdSelected = selectedPaymentMethod == 2;
-    //   if (checkIfEmpty(agreementEnteredIntoOn)) {
-    //     alert('points',points)
-    //     return false;
-    //   } else if (checkIfEmpty(withinDays)) {
-    //     alert("withinDays")
-    //     return false;
-    //   } else if (checkIfEmpty(rentOut)) {
-    //     alert("rentOut")
-    //     return false;
-    //   } else if (checkIfEmpty(points)) {
-    //     alert('points',points)
-    //     return false;
-    //   } else if (checkIfEmpty(pricePerPoint)) {
-    //     alert('points',points)
-    //     return false;
-    //   // } else if (!ifChecqueMethdSelected && checkIfEmpty(paypalEmail)) {
-    //   //   return false;
-    //   // } else if (!ifChecqueMethdSelected && checkIfEmpty(paypalPassword)) {
-    //   //   return false;
-    //   // } else if (ifChecqueMethdSelected && checkIfEmpty(chequeNumber)) {
-    //   //   return false;
-    //   } else if (ifChecqueMethdSelected && checkIfEmpty(firstName)) {
-    //     alert('firstName',firstName)
-    //     return false;
-    //   } else if (ifChecqueMethdSelected && checkIfEmpty(lastName)) {
-    //     alert("lastName")
-    //     return false;
-    //   } else if (checkIfEmpty(addressLine1)) {
-    //     alert(addressLine1)
-    //     return false;
-    //   } else if (checkIfEmpty(addressLine2)) {
-    //     alert(addressLine2)
-    //     return false;
-    //   } else if (ifChecqueMethdSelected && checkIfEmpty(email)) {
-    //     alert(email)
-    //     return false;
-    //   } else if (checkIfEmpty(phone)) {
-    //     alert(phone)
-    //     return false;
-    //   } else if (checkIfEmpty(accountUserId)) {
-    //     alert(accountUserId)
-    //     return false;
-    //   } else if (checkIfEmpty(accountPassword)) {
-    //     alert(accountPassword)
-  
-    //     return false;
-    //   }
-    //   // } else if (pointsfilePath === '') {
-    //   //   return false;
-    //   // } else if (isSignature == false) {
-    //   //   return false;
-    //   // } else if (signedDate === '') {
-    //   //   return false;
-    //   // }
-    //   return true;
-    // };
+   
     const validation = () => {
-      if(mvc==false){
+
+      console.log(paymenttype);
+  
+     if(mvc==false){
         return false;
       }else if(paymenttype==false){
-          if (checkIfEmpty(firstName)) {
-            return false;
-          } else if (checkIfEmpty(lastName)){
-            return false;
-          }else if (checkIfEmpty(username)) {
+          if (checkIfEmpty(username)) {
             return false;
           } else if (checkIfEmpty(paypalPassword)) {
             return false;
           } else if (checkIfEmpty(printName)) {
             return false;
-          } else if (checkIfEmpty(signature)) {
+          }  else if (checkIfEmpty(signature)) {
             return false;
-          }else if (checkIfEmpty(addressLine1)) {
+          } else if (checkIfEmpty(addressLine1)) {
             return false;
           } else if (checkIfEmpty(addressLine2)) {
             return false;
           } else if (checkIfEmpty(email)) {
             return false;
-          }else if (checkIfEmpty(rotingnumber)) {
-            return false;
-          } else if (checkIfEmpty(acnumber)) {
-            return false;
-          } else if (checkIfEmpty(phone)) {
+          } 
+          // else if (checkIfEmpty(rotingnumber)) {
+          //   return false;
+          // } else if (checkIfEmpty(acnumber)) {
+          //   return false;
+          // }
+          else if (checkIfEmpty(phone)) {
             return false;
           }else{
-            return true;
+          return true;
           } 
       }else if(paymenttype==true){
         if(checkIfEmpty(paypalEmail)){
+        
           return false;
         }else if (checkIfEmpty(username)) {
           return false;
@@ -250,9 +195,17 @@ import {
         } else if (checkIfEmpty(signature)) {
           return false;
         }
+         return true;
+      }else if(paymenttype=='ach'){
+        if (checkIfEmpty(rotingnumber)) {
+            return false;
+          } else if (checkIfEmpty(acnumber)) {
+            return false;
+          }
         return true;
       } 
     };
+  
   
     const submitContract = async () => {
       
@@ -294,8 +247,8 @@ import {
       if (selectedPaymentMethod === '2' || paymenttype==false) {
         const data2 = {
           check_code: chequeNumber,
-          check_firstname: firstName,
-          check_lastname: lastName,
+          // check_firstname: firstName,
+          // check_lastname: lastName,
           check_email: email,
         };
         data = {...data, ...data2};
@@ -415,7 +368,7 @@ import {
                   style={{marginTop: 20, fontWeight: 400}}
                 />
                 <MyText
-                  text={`We look forward to serving you by acting as an intermediary between you and the vacation rental guest.`}
+                  text={`We look forward to serving you by acting as an intermediary between you and the guests using your points.`}
                   textColor={'#353334'}
                   fontSize={13}
                   fontFamily="Verdana"
@@ -423,7 +376,7 @@ import {
                   style={{marginTop: 20, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Our corporate name is KTJ Enterprises Inc, DBATimeshare Simplified and our company websites are www.timesharesimplified.com and our sister company Vacations Simplified can be found at www.vacationcondosforless.com`}
+                  text={`Our corporate name is KTJ Enterprises Inc, DBA Timeshare Simplified and our company websites are www.timesharesimplified.com and our sister company Vacations Simplified can be found at www.vacationcondosforless.com`}
                   textColor={'#353334'}
                   fontSize={13}
                   fontFamily="Verdana"
@@ -679,7 +632,7 @@ import {
                 />
                 <View>
                   <MyText
-                    text={'This  Timeshare  Management  Service  Agreement  ("Agreement")  is  entered  into  as  of this '}
+                    text={'This Timeshare Management Service Agreement ("Agreement") is entered into as of the date when all parties have signed this agreement'}
                     textColor="#353334"
                     fontSize={13}
                     fontFamily="Verdana"
@@ -687,7 +640,8 @@ import {
                   />
   
                  
-                  <MyTextInput
+               <View style={{flexDirection:'row',width:width-150,alignItems:'center'}}>
+                 <MyTextInput
                     // inputRef={emailRef}
                     placeholder={''}
                     editable={false}
@@ -700,10 +654,18 @@ import {
                     //   ? styles.redBorderNotFilled
                     //   : null
                   />
+                   <MyText
+                    text={', by and between:'}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    style={{marginLeft: 20, fontWeight: 400}}
+                  />
+                 </View>
                 </View>
   
                 <MyText
-                  text={' And between:KTJ Enterprises Inc. a Nevada Corporation,d/b/a Timeshare Simplified [support@timesharesimplified.com] ("TS ") and'}
+                  text={'KTJ Enterprises Inc. a Nevada Corporation,d/b/a Timeshare Simplified[support@timesharesimplified.com] ("TS ") and'}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1002,7 +964,7 @@ import {
                     />
                     <MyText
                       text={
-                        'The websites we utilize provide host protection against damages and liabilities.Additionally, the resort requires guests to provide their credit card for any potential fees or damages. While instances involving damages are extremely rare, owners should be aware that they could potentially be involved,as per their governing documents.'
+                        'The websites we utilize provide host protection against damages and liabilities.Additionally, the resort requires guests to provide their credit card for any potential fees or damages. While instances involving damages are extremely rare, owners should be aware that they could potentially be involved,as per their governing documents.how- ever we have never seen an instance of this ever but it is not impossible.'
                       }
                       textColor="#353334"
                       fontSize={13}
@@ -1139,7 +1101,7 @@ import {
                 }}
               />
               <MyText
-                text={` If for any reason we went over the number of agreed upon points or you don’t know who the reservation was from please contact us and we will rectify it immediately`}
+                text={` If for any reason we went over the number of agreed upon points or you don’t know who the reservation was from please contact us and we will rectify it as quickly as possible.`}
                 textColor="#353334"
                 fontSize={13}
                 fontFamily="Verdana"
@@ -1266,7 +1228,7 @@ import {
         <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
           <View style={{width:'70%'}}>
               <MyText
-                text={`Advance Payment Per Point: `}
+                text={`Payment Per Point: `}
                 textColor="#353334"
                 fontSize={13}
                 fontFamily="Verdana"
@@ -1436,8 +1398,10 @@ import {
                     setIsPersonalCheck(false);
                     setChequeNumber('Y');
                     setpaymenttype(true)
+                    setrotingnumber('')
+                    setacnumber('')
                     }}>
-                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype?'#000':'#fff',alignSelf:'center'}}></View>
+                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype==true?'#000':'#fff',alignSelf:'center'}}></View>
                    </TouchableOpacity>
                    <Text style={{fontSize:10,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center',marginLeft:10}}>Check</Text>
                    <TouchableOpacity style={{width:20,height:20,borderRadius:20,borderColor:'#000',borderWidth:1,marginLeft:3,marginTop: 20,justifyContent:'center'}}
@@ -1445,14 +1409,29 @@ import {
                     setPersonalCheck('N');
                     setIsPersonalCheck1(false);
                      setpaymenttype(false)
+                     setIsPaymentDetails(true)
+                     setrotingnumber('')
+                     setacnumber('')
+                     setPaypalEmail('')
                     }}>
-                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype?'#fff':'#000',alignSelf:'center'}}></View>
+                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype==false?'#000':'#fff',alignSelf:'center'}}></View>
+                   </TouchableOpacity>
+                   <Text style={{fontSize:10,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center',marginLeft:10}}>ACH</Text>
+                   <TouchableOpacity style={{width:20,height:20,borderRadius:20,borderColor:'#000',borderWidth:1,marginLeft:3,marginTop: 20,justifyContent:'center'}}
+                   onPress={()=>{
+                    setPersonalCheck('N');
+                    setIsPersonalCheck1(false);
+                    setIsPaymentDetails(true);
+                    setpaymenttype('ach')
+                    setPaypalEmail('')
+                    }}>
+                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype=='ach'?'#000':'#fff',alignSelf:'center'}}></View>
                    </TouchableOpacity>
               </View>
              
         </View>
 
-           {paymenttype ?
+           {paymenttype==true ?
                  <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
                  <View style={{width:'50%'}}>
                      <MyText
@@ -1465,69 +1444,24 @@ import {
                        style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                      />
                  </View>
-                   
+
                      <View style={{width:'50%'}}>
                      <TextInput
                         editable
                         maxLength={40}
                         onChangeText={text => {setPaypalEmail(text)}}
                         value={paypalEmail}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,height:40}}
                       />
                      </View>
                     
                </View>
-               :
+               : paymenttype==false ?
+               <></>
+               : paymenttype=='ach' ?
                <>
-                 <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
-                 <View style={{width:'50%'}}>
-                     <MyText
-                       text={`Frist Name: `}
-                       textColor="#353334"
-                       fontSize={13}
-                       fontFamily="Verdana"
-                       textAlign="auto"
-                       lineHeight={21}
-                       style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
-                     />
-                 </View>
-                   
-                     <View style={{width:'50%'}}>
-                     <MyTextInput
-                         placeholder={''}
-                         value={firstName}
-                         setValue={setFirstName}
-                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
-                     />      
-                     </View>
-                    
-               </View>
+             
                <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
-                 <View style={{width:'50%'}}>
-                     <MyText
-                       text={`Last Name: `}
-                       textColor="#353334"
-                       fontSize={13}
-                       fontFamily="Verdana"
-                       textAlign="auto"
-                       lineHeight={21}
-                       style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
-                     />
-                 </View>
-                   
-                     <View style={{width:'50%'}}>
-                     <MyTextInput
-                        placeholder={''}
-                        value={lastName}
-                        setValue={setLastName}
-                        editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
-                     />      
-                     </View>
-                    
-               </View>
-            <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
                  <View style={{width:'50%'}}>
                      <MyText
                        text={`Routing Number: `}
@@ -1575,13 +1509,15 @@ import {
                      </View>
                     
                </View>
-
-               </>
+           
+             </>
+             :
+             null
               }
        <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%',alignItems:'center'}}>
           <View style={{width:'70%'}}>
               <MyText
-                text={`At purchase my MVC Salesperson advised me I could Rent out my timeshare:  `}
+                text={`At purchase my SVO Salesperson advised me I could Rent out my timeshare:  `}
                 textColor="#353334"
                 fontSize={13}
                 fontFamily="Verdana"
@@ -1704,7 +1640,7 @@ import {
 
             </View>
             <Image source={images.fbanner22} />
-              <View style={{marginHorizontal: 5}}>
+            <View style={{marginHorizontal: 5}}>
               
               <MyText
                   text={`In consideration  of  the  mutual  covenants  and  agreements  stated  below,  the  parties agree as follows: `}
@@ -1724,7 +1660,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by the Abound by Westin Vacations Exchange Procedures governing PM’s ownership [document No. 526828-22(6.30.22)].`}
+                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by the Abound by Starwood Vacations Exchange Procedures governing PM’s ownership [document No. 526828-22(6.30.22)].`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1741,7 +1677,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`The term of this agreement shall be for PM’s Use Year or until the Number of Points Allocated are used or expire`}
+                  text={`This agreement shall commence on the Effective Date and shall continue until the earlier of the completion of PM’s current Use Year or the exhaustion or expiration of the Number of Points Allocated.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1758,7 +1694,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Program Member hereby authorizes TS to act as its designated Delegate for the purposes of making reservations and operating PM’s account for the Number of Points Allocated by PM as set out in the Summary. PM shall provide any required notices to MVC. Program Member agrees to provide during the Term, PM’s login credentials to TS for the online reservation system and authorize TS to log in to and interact with MVC reservation or other personnel on behalf of Program Member. TS is also authorized by PM to answer any reservation questions, phone calls, certifications, or acknowledgments on behalf of Program Member in connection with any Guest reservation.`}
+                  text={`Program Member hereby authorizes TS to act as its designated Delegate for the purposes of making reservations and operating PM’s account for the Number of Points Allocated by PM as set out in the Summary. PM shall provide any required notices to SVO. Program Member agrees to provide during the Term, PM’s login credentials to TS for the online reservation system and authorize TS to log in to and interact with SVO reservation or other personnel on behalf of Program Member. TS is also authorized by PM to answer any reservation questions, phone calls, certifications, or acknowledgments on behalf of Program Member in connection with any Guest reservation.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1775,7 +1711,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`TS will remit to PM  the agreed  amount per point for the points used to secure an invited Guest reservation on your behalf as described in the Summary. TS will make reservations and introduce Guests to PM in exchange for a service fee payable by PM, which shall be equal to the net difference between the amount received from the Guest for the use of an Accommodation and the amount of the Advance Payment paid to PM. In the event the amount paid by a Guest is less than the amount paid to PM, no additional payment shall be paid by PM to TS. PM acknowledges and agrees that all payments from Guests will be collected by TS. `}
+                  text={`TS will remit to PM  the agreed  amount per point for the points used to secure an invited Guest reservation on your behalf as described in the Summary. TS will make reservations and introduce Guests to PM in exchange for a service fee payable by PM, which shall be equal to the net difference between the amount received from the Guest for the use of an Accommodation and the amount of the Advance Payment paid to PM. In the event the amount paid by a Guest is less than the amount paid to PM, no additional payment shall be paid by PM to TS. PM acknowledges and agrees that all pay-ments from Guests will be collected by TS. Payments will be made per our payout schedule which we will notify You of and modify from time to time.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1801,7 +1737,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`6. Reservations:`}
+                  text={`6. Rollover Points:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1809,7 +1745,33 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`TS will ensure that all relevant information required to be provided by Guests to MVC is provided by TS on behalf of Program Member. TS will use its best endeavors to ensure that any introduced Guest does not use the Accommodation for any commercial purpose`}
+                  text={`We will automatically carry forward the Number of Points Allocated into the following year on your behalf. The roll over date is set at 2 weeks prior to the deadline to rollover, unless you provide written notice to us at least 30 days prior to your rollover deadline.For instance, if you are a Select Starwood owner and have allocated 5,000 points to us, with an anniversary date from January 1 to December 31st, and we utilize 3,000 points by June 20th, we will carry forward the remaining 2,000 points into the following use year for bookings in that year which will automatically be deemed the Number of Points Allocated and the Payment Per Point Remains the same.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+               <MyText
+                  text={`***If you submit your points to us after the allowable rollover. We will do everything we can in our best efforts to get those monetized for you. However, we cannot guarantee that they will get monetize by the end of your use year.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`7. Guest Cancellations:`}
+                  textColor="#000"
+                  fontSize={14}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
+                />
+                <MyText
+                  text={`You understand that cancellations are inevitable and you will not hold us liable for such cancellation or any impact to your account or points status for such cancellations. In the event a guest cancels within the 60-day window, those points will be transferred to a holding account and placed in priority for rebooking another guest to be rebooked if possible. Whilst we will make every attempt to use cancelled points for another guest you understand that this may not be possible and as such those points shall be deducted from the Number of Points Allocated by you to us.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1818,7 +1780,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`7. Representations and Warranties:`}
+                  text={`8. Reservations:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1826,7 +1788,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Program Member represents and warrants to TS that: You will not override or cancel any Guest reservation made by TS on your behalf; Program Member's SVO account is in good standing, and it has the authority to make Guest reservations; Program Member has not received any notices from SVO that it is not  otherwise  permitted  to  offer  Accommodations  to  an  invited  Guest;  Program  Member understands and acknowledges and releases TS from any and all liability it SVO or any affiliate deems any reservations or actions by TS to be in violation of their policies, rules or procedures; Program Member is not engaged in any commercial use or purpose with respect to their SVO account TS is not engaged to operate your account for any commercial use or purpose`}
+                  text={`TS will ensure that all relevant information required to be provided by Guests to SVO is provided by TS on behalf of Program Member. Reservations are limited to bookings made within the timeframe available for rolling over points, which varies depending on your ownership level. Executive, Presidential, and Chairman levels will have a 9-month window, while Select and Standard owners will have a 7-month window. Bookings will not extend beyond the last day allowable for point rollover.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1835,7 +1797,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`8. Cancellation:`}
+                  text={`9. Representations and Warranties:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1843,7 +1805,24 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Either party may terminate this Agreement by providing written notice to the other party at least 30 days in advance`}
+                  text={`Program Member represents and warrants to TS that: You will not override or cancel any Guest reservation made by TS on your behalf; Program Member's SVO account is in good standing, and it has the authority to make Guest reservations; Program Member has not received any notices from SVO that it is not otherwise permitted to offer Accommodations to an invited Guest; Program Member understands and acknowledges and releases TS from any and all liability it SVO or any affiliate deems any reservations or actions by TS to be in violation of their policies, rules or procedures; Program Member is not engaged in any commercial use or purpose with respect to their SVO account;TS is not engaged to operate your account for any commercial use or purpose.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                  <MyText
+                  text={`10. Non- Commercial Use:`}
+                  textColor="#000"
+                  fontSize={14}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
+                />
+                <MyText
+                  text={`The purpose of our services is to cover annual fees and other costs associated with your timeshare ownership, that is for personal use, and only as needed. You agree and acknowledge that usage of our services are for “non-commercial use” and any payment remitted is intended to offset, reimburse or fund maintenance fee payments and/or monthly loan payments related to your timeshare ownership. We require you to understand the rules and regulations set by their timeshare ownership. You are required to immediately alert us with any updates or changes to the status of Your timeshare ownership account as a result of purported misuse. Failure to comply may result in permanent account suspension and/or monetary damages.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1852,7 +1831,44 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`9. Dispute Resolution:`}
+                  text={`This change in status could include, but is not limited to:`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                <MyText
+                  text={`Account suspension or foreclosure for non-payment;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                <MyText
+                  text={`Warning for violation of commercial use clause; and`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                <MyText
+                  text={`Account suspension for “commercial use”.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+              
+                 <MyText
+                  text={`11. Cancellation:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1860,7 +1876,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`a. Any dispute arising out of or relating to this Agreement shall be resolved through mediation in Las Vegas or another venue nominated by TS. If mediation fails to resolve the dispute, it shall then proceed to arbitration in accordance with the  rules  of  the  American  Arbitration Association,  and  judgment  upon  the  award rendered by the arbitrator(s) may be entered in any court having jurisdiction thereof.`}
+                  text={`Either party may terminate this Agreement by providing written notice to the other party at least 30 days in advance. All exiting reservations must be honored and any prepayments made to you (if any) must be repaid to us immediately.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1869,7 +1885,24 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`10. Assignment:`}
+                  text={`12. Dispute Resolution:`}
+                  textColor="#000"
+                  fontSize={14}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
+                />
+                <MyText
+                  text={`a. Any dispute arising out of or relating to this Agreement shall be resolved through mediation in Las Vegas or another venue nominated by TS. If medi-ation fails to resolve the dispute, it shall then proceed to arbitration in accordance with the  rules  of  the  American  Arbitration Association,  and  judgment  upon  the  award ren-dered by the arbitrator(s) may be entered in any court having jurisdiction thereof.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`13. Assignment:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1886,7 +1919,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`11. Indemnification:`}
+                  text={`14. Indemnification:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1894,7 +1927,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`PM agrees to indemnify and hold TS and our subsidiaries, affiliates, shareholders, members, directors, officers, employees and agents harmless against,  and to reimburse us and them for, any loss, liability or damages arising out of or relating  to  the  services,  or  your  actions  or  inaction,  and  all  reasonable  costs  of  defending  any   claim  brought  against  any  of  us  or  them  or  any  action  in  which  any  of  us  or  them  is   named as a party. (including reasonable attorneys’ fees) unless the loss, liability, damage or cost is solely due to our negligence.`}
+                  text={`PM agrees to indemnify and hold TS and our subsidiaries, affili- ates, shareholders, members, directors, officers, employees and agents harmless against,  and to reimburse us and them for, any loss, liability or damages arising out of or relating  to  the  services,  or  your  actions  or  inaction,  and  all  reasonable  costs  of  defending  any   claim  brought  against  any  of  us  or  them  or  any  action  in  which  any  of  us  or  them  is   named as a party. (including reasonable attorneys’ fees) unless the loss, liability, damage or cost is solely due to our negligence.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1903,7 +1936,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`12. Tax Advice Responsibility:`}
+                  text={`15. Tax Advice Responsibility:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1911,7 +1944,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={` Program Member acknowledges and agrees that they are solely responsible for obtaining and relying upon their own independent tax advice in relation to any payments made or received under this Agreement. TS does not provide`}
+                  text={` Program Member acknowledges and agrees that they are solely responsible for obtaining and relying upon their own independent tax advice in relation to any payments made or received under this Agreement. TS does not provide tax advice, and Program Member should consult with their own qualified tax professionals or advisors to ensure compliance with all applicable tax laws and regulations. Program Member shall hold TS harmless from any tax-related liabilities, penalties, or consequences arising from the payments made or received under this Agreement.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1920,7 +1953,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`13. Data Privacy and Confidentiality:`}
+                  text={`16. Data Privacy and Confidentiality:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1928,7 +1961,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agreement. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services. ii. Confidentiality: Both Parties shall maintain the confidentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties without the explicit consent of the data subject, except as required by law.`}
+                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agree- ment. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services. ii. Confidentiality: Both Parties shall maintain the confi- dentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties with- out the explicit consent of the data subject, except as required by law.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1937,7 +1970,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`14. Binding Effect:`}
+                  text={`17. Binding Effect:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1945,7 +1978,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`This  Agreement  is  binding  upon  the  parties  and  their  respective   executors, administrators, heirs, assigns, and successors in interest, and will not be modified except by written agreement signed by both you and us Except as provided above, this Agreement is not intended, and will not be deemed, to confer any rights or remedies upon any person or legal entity not a party to this Agreement.`}
+                  text={`This  Agreement  is  binding  upon  the  parties  and  their  respective   executors, administrators, heirs, assigns, and successors in interest, and will not be modi-fied except by written agreement signed by both you and us Except as provided above, this Agreement is not intended, and will not be deemed, to confer any rights or remedies upon any person or legal entity not a party to this Agreement.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1954,7 +1987,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`15. Governing Law:`}
+                  text={`18. Governing Law:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1962,7 +1995,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`This Agreement shall be governed by and construed in accordance with the laws of the State of Nevada. This Agreement represents the entire understanding between the Parties and supersedes all prior agreements and understandings, oral or written. Any modification to this Agreement must be in writing and signed by both  Parties. IN WITNESS WHEREOF, the Parties hereto have executed this Timeshare Management Service Agreement as of the Effective Date.`}
+                  text={`This Agreement shall be governed by and construed in accordance with the laws of the State of Nevada. This Agreement represents the entire understand- ing between the Parties and supersedes all prior agreements and understandings, oral or written. Any modification to this Agreement must be in writing and signed by both  Parties. IN WITNESS WHEREOF, the Parties hereto have executed this Timeshare Management Service Agreement as of the Effective Date.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -2152,7 +2185,7 @@ import {
                   style={{marginLeft: 30,marginTop:-5 }}
                 />
                  
-                 <MyTextInput
+                 {/* <MyTextInput
                   placeholder={''}
                   value={userInfo.email}
                   //setValue={setPrintName}
@@ -2168,7 +2201,7 @@ import {
                   textAlign="auto"
                   lineHeight={19}
                   style={{marginLeft: 30,marginTop:-5 }}
-                />
+                /> */}
 
 
 

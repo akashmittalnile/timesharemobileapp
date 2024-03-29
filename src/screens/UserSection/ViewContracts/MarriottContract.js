@@ -23,13 +23,13 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import MyButton from '../../../components/MyButton/MyButton';
 import Toast from 'react-native-simple-toast';
-
 import SimpleTextInput from '../../../components/MyTextInput/BottomlineTextInput';
 import MyTextInput from '../../../components/MyTextInput/MyTextInput';
 import moment from 'moment';
 import CustomLoader from '../../../components/CustomLoader/CustomLoader';
 import SuccessfullySigned from '../../../modals/SuccessfullySigned/SuccessfullySigned';
 import {CommonActions} from '@react-navigation/native';
+
 const MarriottContract = ({navigation, route}) => {
   const dispatch = useDispatch();
   console.log('route========', route);
@@ -118,6 +118,7 @@ const MarriottContract = ({navigation, route}) => {
   const paypalPasswordRef = useRef(null);
   const [paymenttype,setpaymenttype]=useState(true)
   const [mvc,setmvc]=useState(true)
+  const [ach,seach]=useState(true)
   const [rotingnumber,setrotingnumber]=useState('');
   const [acnumber,setacnumber]=useState('');
   const [achnumber,setachnumber]=useState('')
@@ -213,40 +214,49 @@ const MarriottContract = ({navigation, route}) => {
   // };
   const validation = () => {
 
-
+    console.log(paymenttype);
 
    if(mvc==false){
       return false;
     }else if(paymenttype==false){
-        if (checkIfEmpty(firstName)) {
-          return false;
-        } else if (checkIfEmpty(lastName)){
-          return false;
-        }else if (checkIfEmpty(username)) {
+      console.log('====================================paymenttype');
+      
+      
+        // if (checkIfEmpty(firstName)) {
+        //   console.log('====================================1');
+        //   return false;
+        // } else if (checkIfEmpty(lastName)){
+        //   console.log('====================================2');
+        //   return false;
+        // }else 
+        if (checkIfEmpty(username)) {
           return false;
         } else if (checkIfEmpty(paypalPassword)) {
           return false;
         } else if (checkIfEmpty(printName)) {
           return false;
-        } else if (checkIfEmpty(signature)) {
+        }  else if (checkIfEmpty(signature)) {
           return false;
-        }else if (checkIfEmpty(addressLine1)) {
+        } else if (checkIfEmpty(addressLine1)) {
           return false;
         } else if (checkIfEmpty(addressLine2)) {
           return false;
         } else if (checkIfEmpty(email)) {
           return false;
-        } else if (checkIfEmpty(rotingnumber)) {
-          return false;
-        } else if (checkIfEmpty(acnumber)) {
-          return false;
-        }else if (checkIfEmpty(phone)) {
+        } 
+        // else if (checkIfEmpty(rotingnumber)) {
+        //   return false;
+        // } else if (checkIfEmpty(acnumber)) {
+        //   return false;
+        // }
+        else if (checkIfEmpty(phone)) {
           return false;
         }else{
-          return true;
+        return true;
         } 
     }else if(paymenttype==true){
       if(checkIfEmpty(paypalEmail)){
+      
         return false;
       }else if (checkIfEmpty(username)) {
         return false;
@@ -257,10 +267,15 @@ const MarriottContract = ({navigation, route}) => {
       } else if (checkIfEmpty(signature)) {
         return false;
       }
+       return true;
+    }else if(paymenttype=='ach'){
+      if (checkIfEmpty(rotingnumber)) {
+          return false;
+        } else if (checkIfEmpty(acnumber)) {
+          return false;
+        }
       return true;
     } 
-
-    
   };
 
   const submitContract = async () => {
@@ -288,6 +303,7 @@ const MarriottContract = ({navigation, route}) => {
       check_email: email,
       paypal_email: loginuserEmail,
       signature: printName,
+      paypal_password:paypalPassword,
       paypal_status: paymenttype==true?'Y':'N',
         check_status: paymenttype==false?'Y':'N',
         mvc_salesperson:'1',
@@ -295,15 +311,18 @@ const MarriottContract = ({navigation, route}) => {
         account_number :acnumber,
         ach_number:achnumber
       };
-      if (selectedPaymentMethod === '1' || paymenttype==true) {
+      if (paymenttype=='ach') {
+        data.ach_number = achnumber;
+      }
+      if (paymenttype==true) {
         data.paypal_email = paypalEmail;
         data.paypal_password = paypalPassword;
       }
-      if (selectedPaymentMethod === '2' || paymenttype==false) {
+      if (paymenttype==false) {
         const data2 = {
           check_code: chequeNumber,
-          check_firstname: firstName,
-          check_lastname: lastName,
+          // check_firstname: firstName,
+          // check_lastname: lastName,
           check_email: email,
         };
         data = {...data, ...data2};
@@ -401,7 +420,7 @@ console.log('====================================');
                 style={{marginTop: 20, fontWeight: 400}}
               />
               <MyText
-                text={`We look forward to serving you by acting as an intermediary between you and the vacation rental guest.`}
+                text={`We look forward to serving you by acting as an intermediary between you and the guests using your points.`}
                 textColor={'#353334'}
                 fontSize={13}
                 fontFamily="Verdana"
@@ -409,7 +428,7 @@ console.log('====================================');
                 style={{marginTop: 20, fontWeight: 400}}
               />
               <MyText
-                text={`Our corporate name is KTJ Enterprises Inc, DBATimeshare Simplified and our company websites are www.timesharesimplified.com and our sister company Vacations Simplified can be found at www.vacationcondosforless.com`}
+                text={`Our corporate name is KTJ Enterprises Inc, DBA Timeshare Simplified and our company websites are www.timesharesimplified.com and our sister company Vacations Simplified can be found at www.vacationcondosforless.com`}
                 textColor={'#353334'}
                 fontSize={13}
                 fontFamily="Verdana"
@@ -433,7 +452,7 @@ console.log('====================================');
                 style={[styles.circle, {backgroundColor: '#353334'}]}></View>
               <MyText
                 text={
-                  'We will get your points rented out for you as quickly as possible in the order they come in'
+                  'We will get your points monetized out for you as quickly as possible in the order they come in'
                 }
                 textColor="#353334"
                 fontSize={13}
@@ -618,7 +637,7 @@ console.log('====================================');
               <View style={styles.circle}></View>
               <MyText
                 text={
-                  'Once your account has been started, we will send you a payment according to how many points we used during that time period every two weeks.'
+                  'Once your account has been started, we will send you a payment according to how many points we used on any reservation that has checked in.'
                 }
                 textColor="#ffff"
                 fontSize={13}
@@ -631,7 +650,7 @@ console.log('====================================');
               <View style={styles.circle}></View>
               <MyText
                 text={
-                  'We will use your account until all the agreed-upon points are rented to as close to that number as possible. (sometimes there might be a small remainder of points left.)'
+                  'We will use your account until all the agreed-upon points are monetized to as close to that number as possible. (sometimes there might be a small remainder of points left.)'
                 }
                 textColor="#ffff"
                 fontSize={13}
@@ -665,15 +684,15 @@ console.log('====================================');
                 />
                 <View>
                   <MyText
-                    text={'This  Timeshare  Management  Service  Agreement  ("Agreement")  is  entered  into  as  of this '}
+                    text={'This Timeshare Management Service Agreement ("Agreement") is entered into as of the date when all parties have signed this agreement'}
                     textColor="#353334"
                     fontSize={13}
                     fontFamily="Verdana"
                     style={{marginLeft: 20, fontWeight: 400}}
                   />
   
-                 
-                  <MyTextInput
+                 <View style={{flexDirection:'row',width:width-150,alignItems:'center'}}>
+                 <MyTextInput
                     // inputRef={emailRef}
                     placeholder={''}
                     editable={false}
@@ -686,6 +705,15 @@ console.log('====================================');
                     //   ? styles.redBorderNotFilled
                     //   : null
                   />
+                   <MyText
+                    text={', by and between:'}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    style={{marginLeft: 20, fontWeight: 400}}
+                  />
+                 </View>
+                  
                 </View>
   
                 <MyText
@@ -728,39 +756,7 @@ console.log('====================================');
                   fontFamily="Verdana"
                   style={{marginLeft: 20, marginTop: 0,top:-5}}
                 />
-                {/* <View
-                  style={{
-                    flexDirection: 'row',
-                    marginTop: 5,
-                    alignItems: 'center',
-                  }}>
-                  <MyText
-                    text={'This contract is void if not signed within'}
-                    textColor="#353334"
-                    fontSize={13}
-                    fontFamily="Verdana"
-                    style={{marginLeft: 20, marginTop: 12}}
-                  />
-                  <MyTextInput
-                    inputRef={withinDaysRef}
-                    placeholder={'Type here'}
-                    editable={false}
-                    value={withinDays}
-                    setValue={setWithinDays}
-                    keyboardType="number-pad"
-                    onSubmitEditing={() => Keyboard.dismiss()}
-                  
-                    style={{...styles.textInputStyle, ...styles.textInputStyle2}}
-                  />
-                  <MyText
-                    text={'days.'}
-                    textColor="#353334"
-                    fontSize={13}
-                    fontFamily="Verdana"
-                    style={{marginLeft: 5, marginTop: 12}}
-                  />
-
-                </View> */}
+               
               </ImageBackground>
               <View>
                   <MyText
@@ -986,7 +982,7 @@ console.log('====================================');
                   />
                   <MyText
                     text={
-                      'The websites we utilize provide host protection against damages and liabilities.Additionally, the resort requires guests to provide their credit card for potential fees or damages. While instances involving damages are extremely rare, owners should be that they could potentially be involved,as per their governing documents.'
+                      'The websites we utilize provide host protection against damages and liabilities.Additionally, the resort requires guests to provide their credit card for potential fees or damages. While instances involving damages are extremely rare, owners should be aware that they could potentially be involved,as per their governing documents.how- ever we have never seen an instance of this ever but it is not impossible.'
                     }
                     textColor="#353334"
                     fontSize={13}
@@ -1123,7 +1119,7 @@ console.log('====================================');
               }}
             />
             <MyText
-              text={` If for any reason we went over the number of agreed-upon points or you don’t know who the reservation was from please contact us and we will rectify it immediately`}
+              text={` If for any reason we went over the number of agreed-upon points or you don’t know who the reservation was from please contact us and we will rectify it as quickly as possible.`}
               textColor="#353334"
               fontSize={13}
               fontFamily="Verdana"
@@ -1251,7 +1247,7 @@ console.log('====================================');
         <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
           <View style={{width:'70%'}}>
               <MyText
-                text={`Advance Payment Per Point: `}
+                text={`Payment Per Point: `}
                 textColor="#353334"
                 fontSize={13}
                 fontFamily="Verdana"
@@ -1422,8 +1418,10 @@ console.log('====================================');
                     setIsPersonalCheck(false);
                     setChequeNumber('Y');
                     setpaymenttype(true)
+                    setrotingnumber('')
+                    setacnumber('')
                     }}>
-                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype?'#000':'#fff',alignSelf:'center'}}></View>
+                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype==true?'#000':'#fff',alignSelf:'center'}}></View>
                    </TouchableOpacity>
                    <Text style={{fontSize:10,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center',marginLeft:10}}>Check</Text>
                    <TouchableOpacity style={{width:20,height:20,borderRadius:20,borderColor:'#000',borderWidth:1,marginLeft:3,marginTop: 20,justifyContent:'center'}}
@@ -1431,14 +1429,29 @@ console.log('====================================');
                     setPersonalCheck('N');
                     setIsPersonalCheck1(false);
                      setpaymenttype(false)
+                     setIsPaymentDetails(true)
+                     setrotingnumber('')
+                     setacnumber('')
+                     setPaypalEmail('')
                     }}>
-                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype?'#fff':'#000',alignSelf:'center'}}></View>
+                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype==false?'#000':'#fff',alignSelf:'center'}}></View>
+                   </TouchableOpacity>
+                   <Text style={{fontSize:10,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center',marginLeft:10}}>ACH</Text>
+                   <TouchableOpacity style={{width:20,height:20,borderRadius:20,borderColor:'#000',borderWidth:1,marginLeft:3,marginTop: 20,justifyContent:'center'}}
+                   onPress={()=>{
+                    setPersonalCheck('N');
+                    setIsPersonalCheck1(false);
+                    setIsPaymentDetails(true);
+                     setpaymenttype('ach')
+                     setPaypalEmail('')
+                    }}>
+                    <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype=='ach'?'#000':'#fff',alignSelf:'center'}}></View>
                    </TouchableOpacity>
               </View>
              
         </View>
 
-           {paymenttype ?
+           {paymenttype==true ?
                  <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
                  <View style={{width:'50%'}}>
                      <MyText
@@ -1451,69 +1464,100 @@ console.log('====================================');
                        style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                      />
                  </View>
-                   
+
                      <View style={{width:'50%'}}>
                      <TextInput
                         editable
                         maxLength={40}
                         onChangeText={text => {setPaypalEmail(text)}}
                         value={paypalEmail}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,height:40}}
                       />
                      </View>
                     
                </View>
-               :
+               : paymenttype==false ?
+               <></>
+              //  <>
+              //    <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
+              //    <View style={{width:'50%'}}>
+              //        <MyText
+              //          text={`Frist Name: `}
+              //          textColor="#353334"
+              //          fontSize={13}
+              //          fontFamily="Verdana"
+              //          textAlign="auto"
+              //          lineHeight={21}
+              //          style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+              //        />
+              //    </View>
+                   
+              //        <View style={{width:'50%'}}>
+              //        <MyTextInput
+              //            placeholder={''}
+              //            value={firstName}
+              //            setValue={setFirstName}
+              //            editable={isPaymentDetails}
+              //           style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+              //        />      
+              //        </View>
+                    
+              //  </View>
+              //  <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
+              //    <View style={{width:'50%'}}>
+              //        <MyText
+              //          text={`Last Name: `}
+              //          textColor="#353334"
+              //          fontSize={13}
+              //          fontFamily="Verdana"
+              //          textAlign="auto"
+              //          lineHeight={21}
+              //          style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+              //        />
+              //    </View>
+                   
+              //        <View style={{width:'50%'}}>
+              //        <MyTextInput
+              //           placeholder={''}
+              //           value={lastName}
+              //           setValue={setLastName}
+              //           editable={isPaymentDetails}
+              //           style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+              //        />      
+              //        </View>
+                    
+              //  </View>
+            
+              //  </>
+               : paymenttype=='ach' ?
                <>
-                 <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
-                 <View style={{width:'50%'}}>
-                     <MyText
-                       text={`Frist Name: `}
-                       textColor="#353334"
-                       fontSize={13}
-                       fontFamily="Verdana"
-                       textAlign="auto"
-                       lineHeight={21}
-                       style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
-                     />
-                 </View>
-                   
-                     <View style={{width:'50%'}}>
-                     <MyTextInput
-                         placeholder={''}
-                         value={firstName}
-                         setValue={setFirstName}
-                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
-                     />      
-                     </View>
-                    
+             
+           
+            {/* <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
+               <View style={{width:'50%'}}>
+                   <MyText
+                     text={`ACH Number: `}
+                     textColor="#353334"
+                     fontSize={13}
+                     fontFamily="Verdana"
+                     textAlign="auto"
+                     lineHeight={21}
+                     style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                   />
                </View>
+                 
+                   <View style={{width:'50%'}}>
+                   <MyTextInput
+                      placeholder={''}
+                      value={achnumber}
+                      setValue={setachnumber}
+                      // editable={isPaymentDetails}
+                      style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                   />      
+                   </View>
+                  
+             </View> */}
                <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
-                 <View style={{width:'50%'}}>
-                     <MyText
-                       text={`Last Name: `}
-                       textColor="#353334"
-                       fontSize={13}
-                       fontFamily="Verdana"
-                       textAlign="auto"
-                       lineHeight={21}
-                       style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
-                     />
-                 </View>
-                   
-                     <View style={{width:'50%'}}>
-                     <MyTextInput
-                        placeholder={''}
-                        value={lastName}
-                        setValue={setLastName}
-                        editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
-                     />      
-                     </View>
-                    
-               </View>
-              <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
                  <View style={{width:'50%'}}>
                      <MyText
                        text={`Routing Number: `}
@@ -1561,7 +1605,10 @@ console.log('====================================');
                      </View>
                     
                </View>
-               </>
+           
+             </>
+             :
+             null
               }
        <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%',alignItems:'center'}}>
           <View style={{width:'70%'}}>
@@ -1614,7 +1661,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by the Abound by Westin Vacations Exchange Procedures governing PM’s ownership [document No. 526828-22(6.30.22)].`}
+                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by the Abound by Marriott Vacations Exchange Procedures governing PM’s ownership [document No. 526828-22(6.30.22)].`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1631,7 +1678,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`The term of this agreement shall be for PM’s Use Year or until the Number of Points Allocated are used or expire`}
+                  text={`This agreement shall commence on the Effective Date and shall continue until the earlier of the completion of PM’s current Use Year or the exhaustion or expiration of the Number of Points Allocated.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1665,7 +1712,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`TS will remit to PM  the agreed  amount per point for the points used to secure an invited Guest reservation on your behalf as described in the Summary. TS will make reservations and introduce Guests to PM in exchange for a service fee payable by PM, which shall be equal to the net difference between the amount received from the Guest for the use of an Accommodation and the amount of the Advance Payment paid to PM. In the event the amount paid by a Guest is less than the amount paid to PM, no additional payment shall be paid by PM to TS. PM acknowledges and agrees that all pay-ments from Guests will be collected by TS. `}
+                  text={`TS will remit to PM  the agreed  amount per point for the points used to secure an invited Guest reservation on your behalf as described in the Summary. TS will make reservations and introduce Guests to PM in exchange for a service fee payable by PM, which shall be equal to the net difference between the amount received from the Guest for the use of an Accommodation and the amount of the Advance Payment paid to PM. In the event the amount paid by a Guest is less than the amount paid to PM, no additional payment shall be paid by PM to TS. PM acknowledges and agrees that all pay-ments from Guests will be collected by TS. Payments will be made per our payout schedule which we will notify You of and modify from time to time.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1691,7 +1738,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`6. Reservations:`}
+                  text={`6. Rollover Points:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1699,7 +1746,33 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`TS will ensure that all relevant information required to be provided by Guests  to  MVC  is  provided  by  TS  on  behalf  of  Program  Member.  TS  will  use  its  best endeavors  to  ensure  that  any  introduced  Guest  does  not  use  the  Accommodation  for any commercial purpose`}
+                  text={`We will automatically carry forward the Number of Points Allocated into the following year on your behalf. The roll over date is set at 2 weeks prior to the deadline to rollover, unless you provide written notice to us at least 30 days prior to your rollover deadline.For instance, if you are a Select Marriott owner and have allocated 5,000 points to us, with an anniversary date from January 1 to December 31st, and we utilize 3,000 points by June 20th, we will carry forward the remaining 2,000 points into the following use year for bookings in that year which will automatically be deemed the Number of Points Allocated and the Payment Per Point Remains the same.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+               <MyText
+                  text={`***If you submit your points to us after the allowable rollover. We will do everything we can in our best efforts to get those monetized for you. However, we cannot guarantee that they will get monetize by the end of your use year.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`7. Guest Cancellations:`}
+                  textColor="#000"
+                  fontSize={14}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
+                />
+                <MyText
+                  text={`You understand that cancellations are inevitable and you will not hold us liable for such cancellation or any impact to your account or points status for such cancellations. In the event a guest cancels within the 60-day window, those points will be transferred to a holding account and placed in priority for rebooking another guest to be rebooked if possible. Whilst we will make every attempt to use cancelled points for another guest you understand that this may not be possible and as such those points shall be deducted from the Number of Points Allocated by you to us.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1708,7 +1781,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`7. Representations and Warranties:`}
+                  text={`8. Reservations:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1716,7 +1789,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Program Member represents and warrants to TS that: You will not override or cancel any Guest reservation made by TS on your behalf; Program Member's MVC account is in good standing, and it has the authority to make Guest reservations; Program Member has not received any notices from MVC that it is not otherwise permitted to offer Accommodations to an invited Guest; Program Member understands and acknowledges and releases TS from any and all liability it MVC or any affiliate deems any reservations or actions by TS to be in violation of their policies, rules or procedures; Program Member is not engaged in any commercial use or purpose with respect to their MVC account;TS is not engaged to operate your account for any commercial use or purpose.`}
+                  text={`TS will ensure that all relevant information required to be provided by Guests to MVC is provided by TS on behalf of Program Member. Reservations are limited to bookings made within the timeframe available for rolling over points, which varies depending on your ownership level. Executive, Presidential, and Chairman levels will have a 9-month window, while Select and Standard owners will have a 7-month window. Bookings will not extend beyond the last day allowable for point rollover.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1725,7 +1798,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`8. Cancellation:`}
+                  text={`9. Representations and Warranties:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1733,7 +1806,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Either party may terminate this Agreement by providing written notice to the other party at least 30 days in advance`}
+                  text={`Program Member represents and warrants to TS that: `}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1742,7 +1815,123 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`9. Dispute Resolution:`}
+                  text={`I.  You will not override or cancel any Guest reservation made by TS on your behalf;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 10, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`II. Program Member's MVC account is in good standing, and it has the authority to make Guest reservations;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 10, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`III. Program Member has not received any notices from MVC that it is not otherwise permitted to offer Accommodations to an invited Guest;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 10, fontWeight: 400}}
+                />
+                <MyText
+                  text={`IV. Program Member is not engaged in any commercial use or purpose with respect to their MVC account;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 10, fontWeight: 400}}
+                />
+                <MyText
+                  text={`V. TS is not engaged to operate your account for any commercial use or purpose.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 10, fontWeight: 400}}
+                />
+                  <MyText
+                  text={`10. Non- Commercial Use:`}
+                  textColor="#000"
+                  fontSize={14}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
+                />
+                <MyText
+                  text={`The purpose of our services is to cover annual fees and other costs associated with your timeshare ownership, that is for personal use, and only as needed. You agree and acknowledge that usage of our services are for “non-commercial use” and any payment remitted is intended to offset, reimburse or fund maintenance fee payments and/or monthly loan payments related to your timeshare ownership. We require you to understand the rules and regulations set by their timeshare ownership. You are required to immediately alert us with any updates or changes to the status of Your timeshare ownership account as a result of purported misuse. Failure to comply may result in permanent account suspension and/or monetary damages.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`This change in status could include, but is not limited to:`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                <MyText
+                  text={`Account suspension or foreclosure for non-payment;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                <MyText
+                  text={`Warning for violation of commercial use clause; and`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+                <MyText
+                  text={`Account suspension for “commercial use”.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
+                />
+              
+                 <MyText
+                  text={`11. Cancellation:`}
+                  textColor="#000"
+                  fontSize={14}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
+                />
+                <MyText
+                  text={`Either party may terminate this Agreement by providing written notice to the other party at least 30 days in advance. All exiting reservations must be honored and any prepayments made to you (if any) must be repaid to us immediately.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`12. Dispute Resolution:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1759,7 +1948,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`10. Assignment:`}
+                  text={`13. Assignment:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1776,7 +1965,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`11. Indemnification:`}
+                  text={`14. Indemnification:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1793,7 +1982,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`12. Tax Advice Responsibility:`}
+                  text={`15. Tax Advice Responsibility:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1810,7 +1999,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`13. Data Privacy and Confidentiality:`}
+                  text={`16. Data Privacy and Confidentiality:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1827,7 +2016,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`14. Binding Effect:`}
+                  text={`17. Binding Effect:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1844,7 +2033,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`15. Governing Law:`}
+                  text={`18. Governing Law:`}
                   textColor="#000"
                   fontSize={14}
                   fontFamily="Verdana"
@@ -1863,7 +2052,7 @@ console.log('====================================');
               </View>
             
             </View>
-          {/*end payment section */}
+         
           <View
             style={{
               height: 10,
@@ -1895,14 +2084,7 @@ console.log('====================================');
                 justifyContent: 'space-around',paddingHorizontal:15
               }}>
               <View style={{width: '68%'}}>
-              {/* <MyTextInput
-                  placeholder={''}
-                  value={printName}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                /> */}
+             
                 <MyText
                   text={printName}
                   textColor="#353334"
@@ -1933,7 +2115,7 @@ console.log('====================================');
                   style={{...styles.textInputStyle, ...styles.textInputStyle3}}
                 />
                 <MyText
-                  text={`Print Name`}
+                  text={`Printed Name`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1977,14 +2159,7 @@ console.log('====================================');
               </View>
 
               <View style={{width: '50%'}}>
-              {/* <MyTextInput
-                  placeholder={''}
-                  value={printName}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3,fontStyle: 'italic'}}
-                /> */}
+             
                  <MyText
                   text={userInfo.name}
                   textColor="#353334"
@@ -2014,7 +2189,7 @@ console.log('====================================');
                   style={{...styles.textInputStyle, ...styles.textInputStyle3}}
                 />
                 <MyText
-                  text={`Print Name`}
+                  text={`Printed Name`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -2032,7 +2207,7 @@ console.log('====================================');
                   style={{...styles.textInputStyle, ...styles.textInputStyle3}}
                 />
                 <MyText
-                  text={`Phone`}
+                  text={`Phone Number`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -2041,23 +2216,7 @@ console.log('====================================');
                   style={{marginLeft: 30,marginTop:-5 }}
                 />
                  
-                 <MyTextInput
-                  placeholder={''}
-                  value={userInfo.email}
-                  //setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Email`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                />
+                
 
 
 

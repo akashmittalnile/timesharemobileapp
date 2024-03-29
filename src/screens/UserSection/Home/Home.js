@@ -13,7 +13,7 @@ import {
   Alert,
 } from 'react-native';
 //import : custom components
-import MyHeader from 'components/MyHeader/MyHeader';
+import MyHeader from '../../../components/MyHeader/MyHeader';
 import MyText from 'components/MyText/MyText';
 import CustomLoader from 'components/CustomLoader/CustomLoader';
 //import : third parties
@@ -94,6 +94,7 @@ const Home = ({navigation, dispatch}) => {
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
       console.log('userToken', userToken);
+      setOpenDeveloperDropdown(false)
       getDeveloperData();
       getVideos();
       getDropdownData(1)

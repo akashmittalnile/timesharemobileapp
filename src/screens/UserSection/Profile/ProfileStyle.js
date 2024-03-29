@@ -204,7 +204,7 @@ export const styles = StyleSheet.create({
     alignItems: 'center',
   },
   container2: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  header: { height: 50, backgroundColor: '#537791' },
+  header: { height: 50, backgroundColor: Colors.THEME_BLUE },
   text: { textAlign: 'center', fontWeight: '100' },
   dataWrapper: { marginTop: -1 },
   row: { height: 40, backgroundColor: '#E7E6E1' },

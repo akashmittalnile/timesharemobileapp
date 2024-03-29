@@ -325,14 +325,56 @@ infoResponseCallback = (error,success) =>{
   const openEmailModal = () => {
     setShowEmailModal(true);
   };
-  const openOTPModal = () => {
-    setShowEmailModal(false);
-    setShowOTPModal(true);
+ 
+  const openNewPasswordModal = async() => {
+   
+    try {
+     var myotp=firstCode+secondCode+thirdCode+forthCode
+     setShowLoader(true);
+      const postData = new FormData();
+      postData.append('email', forgotEmail);
+      postData.append('otp', myotp);
+      console.log('postData======',postData);
+      const resp = await Service.postApi(Service.VERIFY_OTP, postData);
+      setShowLoader(false);
+      console.log('resp======', resp.data);
+      if (resp?.data?.success) {
+        setShowOTPModal(false);
+        setShowNewPasswordModal(true);
+      } else {
+        Toast.show(resp?.data?.msg, Toast.SHORT);
+      }
+    } catch (e) {
+      setShowLoader(false);
+      console.log(e);
+    }
   };
-  const openNewPasswordModal = () => {
-    setShowOTPModal(false);
-    setShowNewPasswordModal(true);
-  };
+  const changePass=async()=>{
+    console.log('====================================');
+    console.log('jiijiji');
+    console.log('====================================');
+    try {
+      setShowLoader(true);
+      const postData = new FormData();
+      postData.append('email', forgotEmail);
+      postData.append('new_password', newPassword);
+      postData.append('confirm_password', confirmPassword);
+      console.log('postData======', postData);
+      const resp = await Service.postApi(Service.CHANGE_PASSWORD, postData);
+      setShowLoader(false);
+      console.log('resp======', resp.data);
+      if (resp?.data?.status) {
+        // setShowOTPModal(false);
+        Toast.show(resp?.data?.message, Toast.SHORT);
+         setShowNewPasswordModal(false);
+      } else {
+        Toast.show(resp?.data?.message, Toast.SHORT);
+      }
+    } catch (e) {
+      setShowLoader(false);
+      console.log(e);
+    }
+  }
   const resetIndexGoToBottomTab = CommonActions.reset({
     index: 1,
     routes: [{name: ScreenNames.BOTTOM_TAB}],
@@ -343,15 +385,23 @@ infoResponseCallback = (error,success) =>{
   const handleSendOtp = async () => {
     console.log("handleSendOtp")
     try {
+      setShowLoader(true);
       const postData = new FormData();
       postData.append('email', forgotEmail);
       const resp = await Service.postApi(Service.SEND_OTP, postData);
-      console.log('resp======', resp);
+      setShowLoader(false);
+      console.log('resp======', resp.data);
+      if (resp?.data?.status) {
+        setShowEmailModal(false)
+        setShowOTPModal(true)
+      } else {
+        Toast.show(resp?.data?.message, Toast.SHORT);
+      }
     } catch (e) {
+      setShowLoader(false);
       console.log(e);
     }
   };
-
   //UI
   return (
     <ImageBackground
@@ -390,11 +440,11 @@ infoResponseCallback = (error,success) =>{
               setValue={setEmail}
               isIcon
               icon={require('assets/images/email-icon.png')}
-              onSubmitEditing={() => passwordRef.current.focus()}
+              // onSubmitEditing={() => passwordRef.current.focus()}
               style={{marginTop: 70}}
             />
             <MyTextInput
-              inputRef={passwordRef}
+              // inputRef={passwordRef}
               placeholder={'Password'}
               value={password}
               setValue={setPassword}
@@ -518,12 +568,13 @@ infoResponseCallback = (error,success) =>{
       />
       <ForgotPasswordEnterNewPassword
         visible={showNewPasswordModal}
+        changePass={changePass}
         setVisibility={setShowNewPasswordModal}
         newPassword={newPassword}
         setNewPassword={setNewPassword}
         confirmPassword={confirmPassword}
         setConfirmPassword={setConfirmPassword}
-        confirmPasswordRef={confirmPasswordRef}
+        // confirmPasswordRef={confirmPasswordRef}
       />
       <CustomLoader showLoader={showLoader} />
     </ImageBackground>

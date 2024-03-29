@@ -1,11 +1,11 @@
-import {View, Text, ScrollView, FlatList} from 'react-native';
+import {View, Text, ScrollView, FlatList, TouchableOpacity} from 'react-native';
 import React, {useEffect, useState} from 'react';
 //import : styles
 import {styles} from './NotificationsStyle';
 //import : custom components
-import MyHeader from 'components/MyHeader/MyHeader';
+import MyHeader from '../../../components/MyHeader/MyHeader';
 import NotificationTab from './NotificationTab';
-import {ScreenNames, Service} from '../../../global/Index';
+import {ScreenNames,Colors, Service} from '../../../global/Index';
 import {useSelector} from 'react-redux';
 import CustomLoader from '../../../components/CustomLoader/CustomLoader';
 
@@ -54,9 +54,27 @@ const Notifications = ({navigation}) => {
       setShowLoader(false);
     }
   };
+  const readNotification = async () => {
+    try {
+      const resp = await Service.getApiWithToken(
+        userToken,
+        Service.read_notification,
+      );
+    
+      if (resp?.data?.status) {
+       console.log('done',resp?.data)
+      }
+      setShowLoader(false);
+    } catch (error) {
+      console.log(error);
+      setShowLoader(false);
+    }
+  };
+  
   useEffect(() => {
     setShowLoader(true);
     getNotification();
+   
   }, []);
   const renderNotificationItems = ({item}) => {
     return <NotificationTab items={item} />;
@@ -66,6 +84,10 @@ const Notifications = ({navigation}) => {
     <>
       <View style={styles.container}>
         <MyHeader Title="Notifications" />
+        <TouchableOpacity style={{width:70,height:30,borderRadius:8,backgroundColor:Colors.THEME_BLUE,alignSelf:'flex-end',justifyContent: 'center',margin:10}}
+        onPress={()=>{ readNotification()}}>
+      <Text style={{color:'#000',fontWeight:'700',textAlign:'center'}}>Clear</Text>
+        </TouchableOpacity>
         <View style={styles.mainView}>
           <FlatList
             data={notificationData}

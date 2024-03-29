@@ -31,6 +31,7 @@ export const CHECK_TOKEN_EXPIRY = `users/check-login`;
 export const COUPON_VALIDATE = `coupon-validate`;
 export const SIGN_CONTRACT_AGREEMENT = `developercontracts/sign-contract-agreement`;
 export const GET_NOTIFICATION = `notification/get-notification`;
+export const read_notification='notification/read-notification'
 export const SEND_OTP = `users/sendotp`;
 export const VERIFY_OTP = `users/verifyotp`;
 export const RESEND_OTP = `users/changepassword`;

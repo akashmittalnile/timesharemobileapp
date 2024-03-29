@@ -134,6 +134,9 @@ const ReviewTimesharePoint = ({navigation, dispatch, route}) => {
     setShowContractTermsModal(true);
   };
   const handleSignContract = async status => {
+    console.log('====================================route?.params?.points');
+    console.log(route?.params?.points);
+    console.log('====================================');
     setShowLoader(true);
     try {
       let data = {
@@ -142,12 +145,12 @@ const ReviewTimesharePoint = ({navigation, dispatch, route}) => {
         userid: userInfo?.id,
         year: route?.params?.selectedYear,  
         points: route?.params?.points,
-        price_per_point:route?.params?.selectedDeveloper?.name=='Marriott' ?
+        price_per_point:route?.params?.selectedDeveloper?.name!='Marriott' ?
           route?.params?.selectedDeveloper?.developer_points?.find(
             el => el?.year == route?.params?.selectedYear,
           )?.price_per_point
           :
-          route?.params?.price_per_point,
+        route?.params?.price_per_point,
         developer_name: route?.params?.selectedDeveloper?.name,
         name: route?.params?.name,
         email: route?.params?.email,

@@ -81,7 +81,6 @@ useEffect(()=>{
   if(userInfo?.contact){
     formatPhoneNumber(userInfo?.contact)
   }
-  
 },[])
 
   const verifyContact = async (txt) => {
@@ -95,7 +94,6 @@ useEffect(()=>{
       console.log('====================================');
       if (resp?.data?.status) {
         setphonecolor('#000')
-        
       } else {
         setphonecolor('red')
        
@@ -135,10 +133,7 @@ useEffect(()=>{
     return true;
   };
   const updateProfile = async () => {
-    if (!validation()) {
-      return;
-    }
-   
+    if (validation()) {
       const formdata = new FormData();
       // formdata.append('id', userInfo?.id);
       formdata.append('name', name);
@@ -146,10 +141,6 @@ useEffect(()=>{
       formdata.append('address', userInfo?.address);
       formdata.append('status', '1');
       if (filePath != '') {
-        // const imageName = filePath.path.slice(
-        //   filePath.path.lastIndexOf('/'),
-        //   filePath.path.length,
-        // );
       formdata.append('profile_img',{
           name: filePath.fileName,
           type: filePath.type,
@@ -157,7 +148,9 @@ useEffect(()=>{
         }
         );
       }
- 
+   console.log('====================formdata================');
+   console.log(formdata);
+   console.log('====================================');
       setShowLoader(true);
       try {
         let response = await fetch('http://35.155.124.107/api/users/update_profile', {
@@ -178,7 +171,6 @@ useEffect(()=>{
         await AsyncStorage.setItem('userInfo', jsonValue);
         dispatch(setUser(responseJson?.data));
         navigation.goBack();
-         
         }else{
           let coddatasse = await response.json()
           console.log(coddatasse)   
@@ -187,8 +179,9 @@ useEffect(()=>{
         console.error(error);
         
       }
-
-    setShowLoader(false)
+      setShowLoader(false)
+ }
+    
   };
 
   //function : imp function

@@ -115,9 +115,11 @@ const ViewRejectedContracts = ({route}) => {
     <View style={{ flex: 1,}}>
       <CustomLoader showLoader={loading} />
       <MyHeader Title={'Rejected Contract PDF'} />
-      <WebView
+     
+
+    <WebView
         source={{
-          uri: route?.params?.url,
+          uri: Platform.OS=='ios'?route?.params?.url : `http://docs.google.com/gview?embedded=true&url=${encodeURIComponent(route?.params?.url)}`,
         }}
         onLoad={() => {
           setloading(true);
@@ -126,9 +128,17 @@ const ViewRejectedContracts = ({route}) => {
           setloading(false);
         }}
         contentMode="mobile"
-        style={{ marginTop: 10,
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+        cacheEnabled={false}
+         onError={(error) => console.error('WebView error:', error)}
+         onHttpError={(error) => console.error('WebView HTTP error:', error)}
+        style={{marginTop: 10,
           flex: 1,}}
       />
+
+
+
       <FAB_Button
         icon={
           <MyIcon.AntDesign name="download" size={30} color={Colors.WHITE} />

@@ -53,16 +53,16 @@ const ForgotPasswordEnterEmail = ({
             style={styles.modal}>
             <View style={styles.modalContent}>
                 <Image source={require('assets/images/successful-img.png')} style={styles.mainImg} />
-                <MyText text='Forgot Password?' fontSize={24} fontFamily='medium' textColor={Colors.THEME_BLUE} style={{ marginTop: 5 }} />
-                <MyText text={`Please Enter Your Registered Email ID`} fontSize={14} fontFamily='medium' textColor={Colors.THEME_GRAY} textAlign='center' style={{ marginTop: 5 }} />
-                <MyText text={`We Will Send An 4 Digit OTP In Your Registered Email ID`} fontSize={12} textColor={'#BCBBB7'} textAlign='center' style={{ marginTop: 5 }} />
+                <MyText text='Forgot Password?' fontSize={22} fontFamily='medium' textColor={Colors.THEME_BLUE} style={{ marginTop: 5 }} />
+                <MyText text={`Please Enter Your Registered Email ID`} fontSize={14} fontFamily='medium' textColor={Colors.THEME_GRAY} textAlign='center' style={{ marginTop: 10,marginButtom:10 }} />
+                <MyText text={`We Will Send An 4 Digit OTP In Your Registered Email ID`} fontSize={12} textColor={'#BCBBB7'} textAlign='center' style={{ marginTop: 10 }} />
                 <MyTextInput
                     placeholder={'Email Address'}
                     value={forgotEmail}
                     setValue={setForgotEmail}
                     isIcon
                     icon={require('assets/images/email-icon.png')}
-                    onSubmitEditing={() => passwordRef.current.focus()}
+                    // onSubmitEditing={() => passwordRef.current.focus()}
                 />
                 <MyButton text={'Reset password'}
                     onPress={handleNext}

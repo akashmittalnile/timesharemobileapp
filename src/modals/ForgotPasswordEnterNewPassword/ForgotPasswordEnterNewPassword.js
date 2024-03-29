@@ -23,6 +23,7 @@ import MyTextInput from '../../components/MyTextInput/MyTextInput';
 
 const ForgotPasswordEnterNewPassword = ({
     visible,
+    changePass,
     setVisibility,
     newPassword,
     setNewPassword,
@@ -76,7 +77,7 @@ const ForgotPasswordEnterNewPassword = ({
                     style={{ marginVertical: 0, marginBottom: 15 }}
                 />
                 <MyButton text={'Reset password'}
-                    onPress={() => { }}
+                    onPress={changePass}
                     style={styles.buttonStyle}
                 />
             </View>

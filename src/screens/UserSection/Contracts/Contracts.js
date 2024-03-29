@@ -116,7 +116,7 @@ const Contracts = ({navigation, dispatch}) => {
     url += '/';
     url += item.id;
     console.log('Ashish',url);
-    // // console.log('gotoViewPDf url', url);
+   console.log('gotoRejectedContractPDf url', url);
     navigation.navigate(ScreenNames.ViewRejectedContracts, {
       url,
       contractId: item.id,

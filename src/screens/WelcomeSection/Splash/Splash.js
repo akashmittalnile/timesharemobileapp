@@ -51,6 +51,9 @@ const Splash = ({navigation}) => {
       }
       const userData = JSON.parse(userInfo);
       if (userData) {
+        console.log('====================================userData');
+        console.log(userData);
+        console.log('====================================');
         dispatch(setUserToken(userToken));
         dispatch(setUser(userData));
         navigation.dispatch(resetIndexGoToUserBottomTab);

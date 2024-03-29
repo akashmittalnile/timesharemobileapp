@@ -5,7 +5,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 //global
 import {ScreenNames} from '../../global/Index';
 //screens
-import Splash from 'screens/WelcomeSection/Splash/Splash';
+import Splash from '../../screens/WelcomeSection/Splash/Splash';
 import Welcome from 'screens/WelcomeSection/Welcome/Welcome';
 import Signup1 from 'screens/WelcomeSection/Signup1/Signup1';
 import Signup2 from 'screens/WelcomeSection/Signup2/Signup2';

@@ -1,5 +1,5 @@
 //import : react components
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { View, TouchableOpacity, Image, Keyboard, Text } from 'react-native';
 import {
   DrawerActions,
@@ -25,10 +25,13 @@ const MyHeader = ({ Title, isMenu = false, style = {} }) => {
   const ICON_SIZE = 30;
   const userInfo = useSelector(state => state.user.userInfo);
   const userNotifications = useSelector(state => state.user.userNotifications);
+  const [notificationData,setnotificationData]=useState('')
   const dispatch = useDispatch();
 
   useFocusEffect(
+  
     useCallback(() => {
+      getNotification()
       const checkTokenExpired = async () => {
         try {
           console.log('header userToken', userToken);
@@ -52,6 +55,23 @@ const MyHeader = ({ Title, isMenu = false, style = {} }) => {
       return () => {};
     }, []),
   );
+  const getNotification = async () => {
+    try {
+      const resp = await Service.getApiWithToken(
+        userToken,
+        Service.GET_NOTIFICATION,
+      );
+      console.log('================notification', resp.data)
+      // );
+      if (resp?.data?.status) {
+        setnotificationData(resp.data.total_notification);
+      }
+
+    } catch (error) {
+      console.log(error);
+  
+    }
+  };
   const resetIndexGoToWelcome = CommonActions.reset({
     index: 1,
     routes: [{name: ScreenNames.WELCOME}],
@@ -98,7 +118,7 @@ const MyHeader = ({ Title, isMenu = false, style = {} }) => {
 
       <View style={[styles.rightContainer, { flex: 1 }]}>
         <TouchableOpacity onPress={gotoNotifications}>
-          {userNotifications?.length > 0 ?
+          {notificationData > 0 ?
             <View
               style={{
                 position: 'absolute',
@@ -111,7 +131,7 @@ const MyHeader = ({ Title, isMenu = false, style = {} }) => {
                 backgroundColor: '#F1FFF4',
                 borderRadius: 100,
               }}>
-              <MyText text={userNotifications?.length} fontSize={10} textColor="black" />
+              <MyText text={notificationData} fontSize={10} textColor="black" />
             </View> : null}
           <Image source={require('assets/images/bell.png')} resizeMode='contain' style={{ marginBottom: 0, right: -7 }} />
         </TouchableOpacity>
