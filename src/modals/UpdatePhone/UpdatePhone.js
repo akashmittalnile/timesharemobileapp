@@ -153,7 +153,7 @@ const UpdatePhone = ({dispatch,press}) => {
 
 <Image style={{width:150,height:150,resizeMode:'stretch',alignSelf:'center'}} source={require('../../assets/images/updatephone.png')}></Image>
 
-<Text style={{color:'#000',fontSize:13,textAlign:'center'}}>Please update your contact number as it is required for the application to autofill in the contracts</Text>
+<Text style={{color:'#000',fontSize:13,textAlign:'center'}}>Adding phone number is required because while signing the contracts its necessary that we have your full information so that we can contact you for sharing the points.</Text>
 
 <View style={{
    flexDirection: 'row',

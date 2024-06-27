@@ -182,6 +182,7 @@ const Home = ({navigation, dispatch}) => {
     }
     setShowLoader2(false);
   };
+  
   const gotoTimesharePoint = () => {
     navigation.navigate(ScreenNames.TIMESHARE_POINT, {developerData});
     // navigation.navigate(ScreenNames.VIEW_CONTRACTS, {developerData});

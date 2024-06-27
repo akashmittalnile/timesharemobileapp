@@ -6,13 +6,13 @@ import axios from 'axios';
 import Toast from 'react-native-simple-toast';
 //endpoint : base_url
 const isProduction = true;
-export const BASE_URL = isProduction
-  ? `http://35.155.124.107/api/`
-  : `https://nileprojects.in/timesharesimplified/api/`;
+export const BASE_URL = `http://35.155.124.107/api/`
+  
 //endpoint : endpoints user
 export const LOGIN = `users/login`;
 export const SOSALLOGIN = `users/socialLogin`;
 export const LOGOUT = `users/logout`;
+export const DELETE=`users/delete-account`
 export const REGISTER = `users/register`;
 export const PROFILE = `users/profile`;
 export const UPDATE_PROFILE = `users/update_profile`;

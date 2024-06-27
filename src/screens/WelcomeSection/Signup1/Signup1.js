@@ -332,7 +332,7 @@ infoResponseCallback = (error,success) =>{
     }
   };
   const gotoSignUP2 = async () => {
-    if(namecolor=='#000' && emailcolor=='#000' && phonecolor=='#000' && password!=''){
+    if(namecolor=='#000' && emailcolor=='#000'  && password!=''){ //&& phonecolor=='#000'
       try {
       console.log('postData=====');
       if (!Validation()) {
@@ -347,16 +347,7 @@ infoResponseCallback = (error,success) =>{
       console.log(error);
     } 
     }else{
-      // dispatch(setUserToken('623|nGdZ7qjNSr27zso40sMPxTB1TRT2JdLIcqI60GPk'));
-      //   dispatch(setUser('Ashis'));
-      //   navigation.navigate(ScreenNames.SIGN_UP_2, {
-      //     filePath,
-      //     name,
-      //     email,
-      //     phone,
-      //     password,
-      //     address,
-      //   });
+     
       Toast.show('Please verify the previous details to complete the sign up process.', Toast.SHORT);
     }
    
@@ -369,6 +360,7 @@ infoResponseCallback = (error,success) =>{
     setShowSuccessModal(true);
   };
   const Validation = () => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     
     if (name == '') {
       Toast.show('Please enter Full Name', Toast.LONG);
@@ -376,10 +368,19 @@ infoResponseCallback = (error,success) =>{
     } else if (email == '') {
       Toast.show('Please enter Email Address', Toast.LONG);
       return;
-    } else if (phone == '') {
-      Toast.show('Please enter Phone number', Toast.LONG);
+    }else if (!regex.test(email)) {
+      Toast.show('Please enter a valid email address.', Toast.LONG);
       return;
-    } else if (password == '') {
+    } 
+    // else if (phone == '') {
+    //   Toast.show('Please enter Phone number', Toast.LONG);
+    //   return;
+    // }
+    // else if (phone.length<10) {
+    //   Toast.show('Please enter valid Phone number', Toast.LONG);
+    //   return;
+    // }
+     else if (password == '') {
       Toast.show('Please enter Password', Toast.LONG);
       return;
     }
@@ -387,6 +388,9 @@ infoResponseCallback = (error,success) =>{
     return true;
   };
   const signUpUser = async () => {
+    console.log('====================================');
+    console.log('fhdkjhkjhgkjhdkj');
+    console.log('====================================');
     setShowLoader(true);
     try {
       const postData = new FormData();
@@ -598,6 +602,7 @@ infoResponseCallback = (error,success) =>{
       const resp = await Service.postApi(`${Service.CHECK_EMAIL}`, postData);
       if (resp?.data?.status) {
         setphoneedit(true)
+        setpassedit(true)
         setemailcolor('#000')
         setIsEmailCorrect(true);
       } else {
@@ -1020,49 +1025,7 @@ infoResponseCallback = (error,success) =>{
               iconStyle={{marginRight: 10}}
             />
             :null}
-     {/*     <View style={styles.mainView}>
-            <MyButton
-              text={'Continue with Apple'}
-              isWhite
-              onPress={openSuccessModal}
-              style={[styles.buttonStyle, {marginTop: 40}]}
-              icon={require('assets/images/apple-icon.png')}
-              isIcon
-              iconStyle={{marginRight: 10}}
-            />
-            <MyButton
-              text={'Continue with Google'}
-              isWhite
-              onPress={() => {}}
-              style={styles.buttonStyle}
-              icon={require('assets/images/google-icon.png')}
-              isIcon
-              iconStyle={{marginRight: 10}}
-            />
-            <MyButton
-              text={'Continue with Facebook'}
-              isWhite
-              onPress={() => {}}
-              style={styles.buttonStyle}
-              icon={require('assets/images/facebook-icon.png')}
-              isIcon
-              iconStyle={{marginRight: 10}}
-            />
-            <TouchableOpacity onPress={gotoSignIn} style={styles.already}>
-              <MyText
-                text="Already have an account? "
-                fontSize={13}
-                fontFamily="medium"
-                textColor="black"
-              />
-              <MyText
-                text="Login"
-                fontSize={15}
-                fontFamily="bold"
-                textColor={'black'}
-              />
-            </TouchableOpacity>
-          </View> */}
+    
            <TouchableOpacity onPress={gotoSignIn} style={[styles.already,{marginTop:20}]}>
               <MyText
                 text="Already have an account? "

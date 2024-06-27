@@ -37,6 +37,7 @@ import { width } from '../../../global/Constant';
 import {AccessToken,AuthenticationToken,LoginManager,Profile,Settings,GraphRequest, GraphRequestManager} from 'react-native-fbsdk-next';
 import auth from '@react-native-firebase/auth';
 import { appleAuth } from '@invertase/react-native-apple-authentication';
+import useKeyboard from '../../../components/useKeyboard';
 
 const SignIn = ({navigation}) => {
   const dispatch = useDispatch();
@@ -61,12 +62,11 @@ const SignIn = ({navigation}) => {
   const [showLoader, setShowLoader] = useState(false);
   const [fcmToken, setFcmToken] = useState('');
   const [googleUserInfo, setGoogleUserInfo] = useState({});
-
   const emailRef = useRef();
   const phoneRef = useRef();
   const passwordRef = useRef();
   const confirmPasswordRef = useRef();
-
+  const isKeyboardOpen = useKeyboard();
   //function : service function
   const checkToken = async () => {
     try {
@@ -90,7 +90,6 @@ const SignIn = ({navigation}) => {
       offlineAccess: true,
     });
   }, []);
-
   const signInWithGoogle = async () => {
     try {
       const hasPlayServices = await GoogleSignin.hasPlayServices();
@@ -273,7 +272,6 @@ infoResponseCallback = (error,success) =>{
       setShowLoader(false);
     
   };
-
   const gotoLogin = () => navigation.navigate(ScreenNames.DRIVER_LOG_IN);
   const gotoSignUP1 = () => navigation.navigate(ScreenNames.SIGN_UP_1);
   const Validation = () => {
@@ -286,7 +284,6 @@ infoResponseCallback = (error,success) =>{
     }
     return true;
   };
-
   const loginUser = async () => {
     if (Validation()) {
       setShowLoader(true);
@@ -323,11 +320,12 @@ infoResponseCallback = (error,success) =>{
     setShowSuccessModal(true);
   };
   const openEmailModal = () => {
+    setForgotEmail('')
     setShowEmailModal(true);
   };
- 
   const openNewPasswordModal = async() => {
-   
+    setNewPassword('')
+    setConfirmPassword('')
     try {
      var myotp=firstCode+secondCode+thirdCode+forthCode
      setShowLoader(true);
@@ -350,9 +348,17 @@ infoResponseCallback = (error,success) =>{
     }
   };
   const changePass=async()=>{
-    console.log('====================================');
-    console.log('jiijiji');
-    console.log('====================================');
+    if(newPassword==''){
+      Toast.show('Please enter password.', Toast.LONG);
+      return;
+    }else if (confirmPassword=='') {
+      Toast.show('Please enter confirm password.', Toast.LONG);
+      return;
+    }else if (confirmPassword!=newPassword) {
+      Toast.show('Password and confirm password should be same.', Toast.LONG);
+      return;
+    } else{
+
     try {
       setShowLoader(true);
       const postData = new FormData();
@@ -375,6 +381,7 @@ infoResponseCallback = (error,success) =>{
       console.log(e);
     }
   }
+  }
   const resetIndexGoToBottomTab = CommonActions.reset({
     index: 1,
     routes: [{name: ScreenNames.BOTTOM_TAB}],
@@ -384,7 +391,15 @@ infoResponseCallback = (error,success) =>{
   };
   const handleSendOtp = async () => {
     console.log("handleSendOtp")
-    try {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(forgotEmail==''){
+      Toast.show('Please enter email address.', Toast.LONG);
+      return;
+    }else if (!regex.test(forgotEmail)) {
+      Toast.show('Please enter a valid email address.', Toast.LONG);
+      return;
+    } else{
+       try {
       setShowLoader(true);
       const postData = new FormData();
       postData.append('email', forgotEmail);
@@ -401,6 +416,8 @@ infoResponseCallback = (error,success) =>{
       setShowLoader(false);
       console.log(e);
     }
+    }
+   
   };
   //UI
   return (

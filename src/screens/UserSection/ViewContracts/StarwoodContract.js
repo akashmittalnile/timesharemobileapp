@@ -117,7 +117,8 @@ import {
     const [rotingnumber,setrotingnumber]=useState('');
     const [acnumber,setacnumber]=useState('');
     const [achnumber,setachnumber]=useState('')
- 
+    const [signedres,setsignedres]=useState('')
+
     useEffect(()=>{
       setEmail(userInfo.email)
       setPhone(userInfo.contact)
@@ -172,11 +173,6 @@ import {
           } else if (checkIfEmpty(email)) {
             return false;
           } 
-          // else if (checkIfEmpty(rotingnumber)) {
-          //   return false;
-          // } else if (checkIfEmpty(acnumber)) {
-          //   return false;
-          // }
           else if (checkIfEmpty(phone)) {
             return false;
           }else{
@@ -289,7 +285,8 @@ import {
         );
         console.log('submitContract resp', resp?.data);
         if (resp?.data?.status) {
-          
+          setsignedres(resp?.data)
+        setShowSignedContractModal(true)
           Toast.show(resp?.data?.message, Toast.SHORT);
         } else {
           // Toast.show(resp?.data?.message, Toast.SHORT);
@@ -299,7 +296,7 @@ import {
         console.log('error in submitContract', error);
       }
       setShowLoader(false);
-      setShowSignedContractModal(true);
+    // setShowSignedContractModal(true);
     };
     // useEffect(() => {
     //   getPrefillData();
@@ -360,7 +357,7 @@ import {
                   style={{}}
                 />
                 <MyText
-                  text={`Our goal is to take the worry and hassle out of renting your vacation ownership points, and provide you with the value you truly deserve!`}
+                  text={`Our goal is to take the worry and hassle out of monetizing your vacation ownership points, and provide you with the value you truly deserve!`}
                   textColor={'#353334'}
                   fontSize={13}
                   fontFamily="Verdana"
@@ -400,7 +397,7 @@ import {
                   style={[styles.circle, {backgroundColor: '#353334'}]}></View>
                 <MyText
                   text={
-                    'We will get your points rented out for you as quickly as possible in the order they come in'
+                    '  We will get your points monetized out for you as quickly as possible in the order they come in'
                   }
                   textColor="#353334"
                   fontSize={13}
@@ -585,7 +582,7 @@ import {
                 <View style={styles.circle}></View>
                 <MyText
                   text={
-                    'Once your account has been started, we will send you a payment according to how many points we used during that time period every two weeks.'
+                    'Once your account has been started, we will send you a payment according to how many points we used on any reservation that has checked in.'
                   }
                   textColor="#ffff"
                   fontSize={13}
@@ -598,7 +595,7 @@ import {
                 <View style={styles.circle}></View>
                 <MyText
                   text={
-                    'We will use your account until all the agreed-upon points are rented to as close to that number as possible. (sometimes there might be a small remainder of points left.)'
+                    'We will use your account until all the agreed-upon points are monetized to as close to that number as possible. (sometimes there might be a small remainder of points left.)'
                   }
                   textColor="#ffff"
                   fontSize={13}
@@ -914,7 +911,7 @@ import {
                     />
                     <MyText
                       text={
-                        'The owner is responsible for any tax liabilities on any profits. There are actually many tax benefits you can utilize and we encourage you. In certain cases,we will provide a 1099 form for any payments made to the owner. There are many tax benefits you can utilize and we encourage you to get a qualified CPA to learn about the many tax deductions available to you.'
+                        'The owner is responsible for any tax liabilities on any profits. In certain cases, we will provide a 1099 form for any payments made to the owner. There are many tax benefits you can utilize and we encourage you to get a qualified CPA to learn about the many tax deductions available to you.'
                       }
                       textColor="#353334"
                       fontSize={13}
@@ -1153,8 +1150,8 @@ import {
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{rentOut}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',borderRadius:25,justifyContent: 'center',marginTop:10}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{rentOut}</Text>
               </View>
              
         </View>
@@ -1172,8 +1169,8 @@ import {
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{selectedYear}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{selectedYear}</Text>
               </View>
              
         </View>
@@ -1190,12 +1187,12 @@ import {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                 placeholder={''}
                 value={username}
                 setValue={setUserName}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1214,12 +1211,12 @@ import {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                 placeholder={''}
                 value={paypalPassword}
                 setValue={setPaypalPassword}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1238,8 +1235,8 @@ import {
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{pricePerPoint}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',justifyContent: 'center',borderRadius:30,marginTop:10}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{pricePerPoint}</Text>
               </View>
              
         </View>
@@ -1266,13 +1263,14 @@ import {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+                  
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  placeholder={''}
                  value={addressLine1}
                  setValue={setAddressLine1}
                  editable={isPaymentDetails}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1291,16 +1289,17 @@ import {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  placeholder={''}
                  value={addressLine2}
                  setValue={setAddressLine2}
                  editable={isPaymentDetails}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
-             
+
+
         </View>
         <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
           <View style={{width:'50%'}}>
@@ -1315,17 +1314,18 @@ import {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+              <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  inputRef={emailRef}
                  placeholder={''}
                  value={email}
                  setValue={setEmail}
-                 editable={isPaymentDetails}
-                 onSubmitEditing={() => phoneRef.current.focus()}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                 editable={false} //isPaymentDetails
+                // onSubmitEditing={() => phoneRef.current.focus()}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
+             
              
         </View>
 
@@ -1342,18 +1342,18 @@ import {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  inputRef={phoneRef}
                  placeholder={''}
                  value={phone}
-                 editable={isPaymentDetails}
+                 editable={false} //isPaymentDetails
                  keyboardType="number-pad"
                  maxLength={Platform.OS == 'android' ? 14 : 10}
-               onChangeText={text => formatPhoneNumber(text)}
+                 onChangeText={text => formatPhoneNumber(text)}
                isOnChangeText={true}
-                 onSubmitEditing={() => accountUserIdRef.current.focus()}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                // onSubmitEditing={() => accountUserIdRef.current.focus()}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1422,7 +1422,7 @@ import {
                     setPersonalCheck('N');
                     setIsPersonalCheck1(false);
                     setIsPaymentDetails(true);
-                    setpaymenttype('ach')
+                    setpaymenttype('ach') 
                     setPaypalEmail('')
                     }}>
                     <View style={{width:'80%',height:'80%',borderRadius:20,backgroundColor:paymenttype=='ach'?'#000':'#fff',alignSelf:'center'}}></View>
@@ -1445,13 +1445,13 @@ import {
                      />
                  </View>
 
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <TextInput
                         editable
                         maxLength={40}
                         onChangeText={text => {setPaypalEmail(text)}}
                         value={paypalEmail}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,height:40}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',height:40,borderColor:'transparent',top:-10}}
                       />
                      </View>
                     
@@ -1474,13 +1474,13 @@ import {
                      />
                  </View>
                    
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <MyTextInput
                         placeholder={''}
                         value={rotingnumber}
                         setValue={setrotingnumber}
                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
                      />      
                      </View>
                     
@@ -1498,15 +1498,16 @@ import {
                      />
                  </View>
                    
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <MyTextInput
                         placeholder={''}
                         value={acnumber}
                         setValue={setacnumber}
                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
                      />      
                      </View>
+                    
                     
                </View>
            
@@ -1660,7 +1661,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by the Abound by Starwood Vacations Exchange Procedures governing PM’s ownership [document No. 526828-22(6.30.22)].`}
+                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by Starwood Vacation Ownership Exchange Procedures.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1745,13 +1746,31 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`We will automatically carry forward the Number of Points Allocated into the following year on your behalf. The roll over date is set at 2 weeks prior to the deadline to rollover, unless you provide written notice to us at least 30 days prior to your rollover deadline.For instance, if you are a Select Starwood owner and have allocated 5,000 points to us, with an anniversary date from January 1 to December 31st, and we utilize 3,000 points by June 20th, we will carry forward the remaining 2,000 points into the following use year for bookings in that year which will automatically be deemed the Number of Points Allocated and the Payment Per Point Remains the same.`}
+                  text={`We will automatically carry forward the Number of Points Allocated into the following year on your behalf. The roll over date is set at 2 months prior to the deadline to rollover, unless you provide written notice to us at least 30 days prior to your rollover deadline.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
                   textAlign="auto"
                   lineHeight={21}
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`We will put a reminder in our system to roll over your points into the next use year to prevent losing any points. However, ultimately you are still responsible for the points being rolled over. So, we recommend you to also set a reminder to ensure that the points have been saved to the next use year at least two weeks prior to the deadline.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20,  fontWeight: 400}}
+                />
+                 <MyText
+                  text={`For instance, if you are a Starwood Vacation owner and have allocated 200,000 points to us, with an anniversary date from November 1 to October 31st, and we utilize 150,000 points by August 31st, we will carry forward the remaining 50,000 points into the following use year for bookings in that year which will automatically be deemed the Number of Points Allocated and the Payment Per Point Remains the same.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20,  fontWeight: 400}}
                 />
                <MyText
                   text={`***If you submit your points to us after the allowable rollover. We will do everything we can in our best efforts to get those monetized for you. However, we cannot guarantee that they will get monetize by the end of your use year.`}
@@ -1805,13 +1824,58 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Program Member represents and warrants to TS that: You will not override or cancel any Guest reservation made by TS on your behalf; Program Member's SVO account is in good standing, and it has the authority to make Guest reservations; Program Member has not received any notices from SVO that it is not otherwise permitted to offer Accommodations to an invited Guest; Program Member understands and acknowledges and releases TS from any and all liability it SVO or any affiliate deems any reservations or actions by TS to be in violation of their policies, rules or procedures; Program Member is not engaged in any commercial use or purpose with respect to their SVO account;TS is not engaged to operate your account for any commercial use or purpose.`}
+                  text={`Program Member represents and warrants to TS that:`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
                   textAlign="auto"
                   lineHeight={21}
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                <MyText
+                  text={`I. You will not override or cancel any Guest reservation made by TS on your behalf;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, fontWeight: 400}}
+                />
+                <MyText
+                  text={`II. Program Member's SVO account is in good standing, and it has the authority to make Guest reservations;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`III. Program Member has not received any notices from SVO that it is not otherwise permitted to offer Accommodations to an invited Guest;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, fontWeight: 400}}
+                />
+                <MyText
+                  text={`IV. Program Member is not engaged in any commercial use or purpose with respect to their SVO account;`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, fontWeight: 400}}
+                />
+                <MyText
+                  text={`V. TS is not engaged to operate your account for any commercial use or purpose.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, fontWeight: 400}}
                 />
                   <MyText
                   text={`10. Non- Commercial Use:`}
@@ -1831,7 +1895,7 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`This change in status could include, but is not limited to:`}
+                  text={`10. This change in status could include, but is not limited to:`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1840,7 +1904,7 @@ import {
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Account suspension or foreclosure for non-payment;`}
+                  text={`1. Account suspension or foreclosure for non-payment;`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1849,7 +1913,7 @@ import {
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Warning for violation of commercial use clause; and`}
+                  text={`2. Warning for violation of commercial use clause; and`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1858,7 +1922,7 @@ import {
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Account suspension for “commercial use”.`}
+                  text={`3. Account suspension for “commercial use”.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1961,13 +2025,22 @@ import {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agree- ment. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services. ii. Confidentiality: Both Parties shall maintain the confi- dentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties with- out the explicit consent of the data subject, except as required by law.`}
+                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agree-ment. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
                   textAlign="auto"
                   lineHeight={21}
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                  <MyText
+                  text={`ii. Confidentiality: Both Parties shall maintain the confi- dentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties with- out the explicit consent of the data subject, except as required by law.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20,fontWeight: 400}}
                 />
                  <MyText
                   text={`17. Binding Effect:`}
@@ -2006,204 +2079,90 @@ import {
               </View>
             
             </View>
-            {/* end design section */}
+          
            
+{/* *************************KTJ Enterprises Inc. dba section******** */}
+<View>
+          <View style={{marginHorizontal: 10}}>
+         
+       <Text style={{fontSize:13,color:'#000',fontWeight:'700',marginLeft:15,marginTop:20}}>KTJ Enterprises Inc. dba Timeshare Simplified</Text>
+
             <View
-            style={{
-              height: 10,
-              width: '100%',
-              backgroundColor: '#f5f5f2',
-            }}></View>
-              <View style={{width:'100%',flexDirection:'row',justifyContent:'space-between',paddingHorizontal:15,marginTop:15}}>
-              <View style={{paddingHorizontal:14,paddingVertical:7, backgroundColor:Colors.THEME_BLUE,borderRadius:30}}>
-              <Text style={{fontSize:13,color:'#fff',textAlign:'center',fontWeight:'700'}}>KTJ Enterprises Inc. dba</Text>
-              </View>
-              <View style={{paddingHorizontal:14,paddingVertical:7, backgroundColor:Colors.THEME_BLUE,borderRadius:30}}>
-              <Text style={{fontSize:13,color:'#fff',textAlign:'center',fontWeight:'700'}}>Program Member</Text>
-              </View>
-              </View>
-               <MyText
-              text={`Timeshare Simplified`}
-              textColor="#000"
-              fontSize={15}
-              fontFamily="Verdana"
-              textAlign="auto"
-              lineHeight={20}
-              style={{marginLeft: 20, marginTop: 5, fontWeight: 700}}
-            />
-              <View
               style={{
-                flexDirection: 'row',
+              
                 marginBottom: 20,
-                // marginTop: 20,
-                justifyContent: 'space-around',paddingHorizontal:15
+                marginTop: 20,
+            
               }}>
-              <View style={{width: '68%'}}>
-              {/* <MyTextInput
-                  placeholder={''}
-                  value={printName}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                /> */}
-                <MyText
+             
+             <View
+                  style={{
+                    width: '80%',
+                   flexDirection:'row'
+                  }}>
+                
+                 <MyText
+                  text={`Signature :   `}                
+                    textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20,  fontWeight: 400}}
+                />
+                  <View
+                  style={{
+                   borderBottomWidth: 0.5,
+                    width: '80%',
+                 
+                  }}>
+                   <MyText
                   text={printName}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="AlexBrush-Regular"
                   textAlign="auto"
                   lineHeight={19}
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3,fontStyle: 'italic',left:15}}
-                />
-                <View style={{width:'75%',height:1,backgroundColor:'#000',marginBottom:3,marginLeft:15}} />
-            
-                <MyText
-                   text={`Signature`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
+                  style={{marginLeft: 10,fontStyle: 'italic', }}
                 />
                
-                <MyTextInput
-                  placeholder={''}
-                  value={printName}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Print Name`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                />
-                
-                
-                <View style={{flexDirection: 'row'}}>
-                  <MyText
-                    text={`Date :`}
-                    textColor="#353334"
-                    fontSize={13}
-                    fontFamily="Verdana"
-                    textAlign="auto"
-                    lineHeight={19}
-                    style={{marginLeft: 20, marginTop: 20}}
-                  />
-                 <View style={{width:184}}>
-                 <MyTextInput
-                    // inputRef={emailRef}
-                    placeholder={''}
-                    editable={false}
-                    value={moment(new Date()).format('MM/DD/YYYY')}
-                    setValue={setAgreementEnteredIntoOn}
-                    onSubmitEditing={() => anniStartDates.current.focus()}
-                    // style={{...styles.textInputStyle}}
-                    // textInputstyle={{padding: 0, marginLeft:10}}
-                    // isValidationError && checkIfEmpty(agreementEnteredIntoOn)
-                    //   ? styles.redBorderNotFilled
-                    //   : null
-                    style={{
-                      ...styles.textInputStyle,
-                      ...styles.textInputStyle6,top:6
-                    }}
-                  />
-                 </View>
+               </View>
                 </View>
-                
-              </View>
 
-              <View style={{width: '50%'}}>
-              {/* <MyTextInput
-                  placeholder={''}
-                  value={printName}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3,fontStyle: 'italic'}}
-                /> */}
+                <View
+                  style={{
+                    width: '80%',
+                   flexDirection:'row',
+                   marginTop:20
+                  }}>
+                
                  <MyText
-                  text={userInfo.name}
-                  textColor="#353334"
+                 text={`Printed Name :`}         
+                    textColor="#353334"
                   fontSize={13}
-                  fontFamily="AlexBrush-Regular"
+                  fontFamily="Verdana"
                   textAlign="auto"
-                  lineHeight={19}
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3,fontStyle: 'italic',left:15}}
+                  lineHeight={21}
+                  style={{marginLeft: 20,  fontWeight: 400}}
                 />
-                <View style={{width:'75%',height:1,backgroundColor:'#000',marginBottom:3,marginLeft:15}} />
-              
-                <MyText
-                   text={`Signature`}
+                  <View
+                  style={{
+                   borderBottomWidth: 0.5,
+                    width: '80%',
+                  
+                  }}>
+                   <MyText
+                  text={printName}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
                   textAlign="auto"
                   lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
+                  style={{marginLeft: 10, }}
                 />
                
-                <MyTextInput
-                  placeholder={''}
-                  value={userInfo.name}
-                  setValue={setPrintName}
-                  editable={false}
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Print Name`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                />
-                
-                <MyTextInput
-                  placeholder={''}
-                  value={userInfo.contact}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Phone`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                />
-                 
-                 {/* <MyTextInput
-                  placeholder={''}
-                  value={userInfo.email}
-                  //setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Email`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                /> */}
-
-
+               </View>
+                </View>
 
                 <View style={{flexDirection: 'row'}}>
                   <MyText
@@ -2215,29 +2174,182 @@ import {
                     lineHeight={19}
                     style={{marginLeft: 20, marginTop: 20}}
                   />
-                 <View style={{width:184}}>
-                 <MyTextInput
-                    // inputRef={emailRef}
-                    placeholder={''}
-                    editable={false}
-                    value={moment(new Date()).format('MM/DD/YYYY')}
-                    setValue={setAgreementEnteredIntoOn}
-                    onSubmitEditing={() => anniStartDates.current.focus()}
-                    // style={{...styles.textInputStyle}}
-                    // textInputstyle={{padding: 0, marginLeft:10}}
-                    // isValidationError && checkIfEmpty(agreementEnteredIntoOn)
-                    //   ? styles.redBorderNotFilled
-                    //   : null
-                    style={{
-                      ...styles.textInputStyle,
-                      ...styles.textInputStyle6,top:7
-                    }}
-                  />
-                 </View>
+                  <View style={{width: 184}}>
+                    <MyTextInput
+                      placeholder={''}
+                      editable={false}
+                      value={moment(new Date()).format('MM/DD/YYYY')}
+                   
+                      setValue={setAgreementEnteredIntoOn}
+                      onSubmitEditing={() => anniStartDates.current.focus()}
+                    
+                      style={{
+                        ...styles.textInputStyle,top:7,left:5,
+                        ...styles.textInputStyle6,
+                      }}
+                    />
+                  </View>
                 </View>
+
+
+             
+            </View>
+          </View>
+
+          <View style={{marginHorizontal: 10}}>
+         
+         <Text style={{fontSize:13,color:'#000',fontWeight:'700',marginLeft:15,marginTop:20}}>Program Member Full Name and Signature</Text>
+  
+              <View
+                style={{
                 
+                  marginBottom: 20,
+                  marginTop: 20,
+              
+                }}>
+               
+               <View
+                    style={{
+                      width: '80%',
+                     flexDirection:'row'
+                    }}>
+                  
+                   <MyText
+                    text={`Signature :   `}                
+                      textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={21}
+                    style={{marginLeft: 20,  fontWeight: 400}}
+                  />
+                    <View
+                    style={{
+                     borderBottomWidth: 0.5,
+                      width: '80%',
+                   
+                    }}>
+                     <MyText
+                   text={userInfo.name}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="AlexBrush-Regular"
+                    textAlign="auto"
+                    lineHeight={19}
+                    style={{marginLeft: 10,fontStyle: 'italic', }}
+                  />
+                 
+                 </View>
+                  </View>
+  
+                  <View
+                    style={{
+                      width: '80%',
+                     flexDirection:'row',
+                     marginTop:20
+                    }}>
+                  
+                   <MyText
+                   text={`Printed Name :`}         
+                      textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={21}
+                    style={{marginLeft: 20,  fontWeight: 400}}
+                  />
+                    <View
+                    style={{
+                     borderBottomWidth: 0.5,
+                      width: '80%',
+                    
+                    }}>
+                     <MyText
+                   text={userInfo.name}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={19}
+                    style={{marginLeft: 10, }}
+                  />
+                 
+                 </View>
+                  </View>
+  
+                  <View
+                    style={{
+                      width: '80%',
+                     flexDirection:'row',
+                     marginTop:20
+                    }}>
+                  
+                   <MyText
+                   text={`Phone Number : `} 
+                      textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={21}
+                    style={{marginLeft: 20,  fontWeight: 400}}
+                  />
+                    <View
+                    style={{
+                     borderBottomWidth: 0.5,
+                      width: '80%',
+                    
+                    }}>
+                     <MyText
+                   text={userInfo.contact}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={19}
+                    style={{marginLeft: 10, }}
+                  />
+                 
+                 </View>
+                  </View>
+
+                 
+
+
+                  <View style={{flexDirection: 'row'}}>
+                    <MyText
+                      text={`Date :`}
+                      textColor="#353334"
+                      fontSize={13}
+                      fontFamily="Verdana"
+                      textAlign="auto"
+                      lineHeight={19}
+                      style={{marginLeft: 20, marginTop: 20}}
+                    />
+                    <View style={{width: 184}}>
+                      <MyTextInput
+                        placeholder={''}
+                        editable={false}
+                        value={moment(new Date()).format('MM/DD/YYYY')}
+                     
+                        setValue={setAgreementEnteredIntoOn}
+                        onSubmitEditing={() => anniStartDates.current.focus()}
+                      
+                        style={{
+                          ...styles.textInputStyle,top:7,left:5,
+                          ...styles.textInputStyle6,
+                        }}
+                      />
+                    </View>
+                  </View>
+  
+  
+               
               </View>
             </View>
+            </View>
+
+{/* ********************end***************************** */}
+
 
 
             <View style={{marginTop: 20}}>
@@ -2263,6 +2375,7 @@ import {
           visitWebsite={visitWebsite}
           davename={developerName}
           gotoSellMorePoints={gotoSellMorePoints}
+          point={signedres.waiting_number}
         />
       </>
     );

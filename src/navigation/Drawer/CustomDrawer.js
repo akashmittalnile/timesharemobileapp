@@ -9,6 +9,7 @@ import {
   Text,
   Linking,
   Dimensions,
+  Platform,
 } from 'react-native';
 import {CommonActions} from '@react-navigation/core';
 //import : custom components
@@ -43,10 +44,7 @@ const CustomDrawer = ({navigation}) => {
   //function : navigation function
   const closeDrawer = () => navigation.closeDrawer();
 
-  const resetIndexGoToWelcome = CommonActions.reset({
-    index: 1,
-    routes: [{name: ScreenNames.WELCOME}],
-  });
+  
   const gotoWelcome = () =>
     CommonActions.reset({
       index: 1,
@@ -122,7 +120,29 @@ const CustomDrawer = ({navigation}) => {
     }
     setShowLoaderLogout(false);
   };
+  const Mydelete = async () => {
+    setShowLoaderLogout(true);
+    try {
+      const resp = await Service.getApiWithToken(
+        userToken,
+        Service.DELETE,
+        {}
+      );
+      console.log('logout resp', resp);
+      if (resp?.data?.status) {
+       
+        closeDrawer();
+        navigation.dispatch(gotoWelcome)
+        dispatch(logOutUser());
+        await AsyncStorage.clear();
+      }
+    } catch (error) {
+      console.log('error in logout', error);
+    }
+    setShowLoaderLogout(false);
+  };
 
+  
   const gotoAboutUs = () => {
     gotoWebPage('https://www.timesharesimplified.com/about-us', 'About Us');
   };
@@ -234,7 +254,25 @@ const CustomDrawer = ({navigation}) => {
           )
         })}
 
-    
+    {Platform.OS=='ios' ? 
+      <TouchableOpacity style={styles.menuContainer} onPress={Mydelete}>
+          <View style={styles.menuImage}>
+            <Image
+              resizeMode="contain"
+              style={styles.image}
+              source={require('../../assets/images/date-of-birth-icon.png')}
+            />
+          </View>
+          <Text style={styles.menuLabel}>Delete Account</Text>
+          <View style={styles.arrowImage}>
+            <Image
+              resizeMode="contain"
+              style={styles.image}
+              source={require('../../assets/images/rightArrow.png')}
+            />
+          </View>
+        </TouchableOpacity>
+        : null }
         <TouchableOpacity style={styles.menuContainer} onPress={logout}>
           <View style={styles.menuImage}>
             <Image

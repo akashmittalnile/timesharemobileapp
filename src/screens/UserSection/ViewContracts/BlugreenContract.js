@@ -117,12 +117,12 @@ const BlugreenContract = ({navigation, route}) => {
   const paypalPasswordRef = useRef(null);
   const [paypalEmail, setPaypalEmail] = useState('');
   const [rotingnumber,setrotingnumber]=useState('');
-  const [acnumber,setacnumber]=useState();
+  const [acnumber,setacnumber]=useState('');
   const [achnumber,setachnumber]=useState('')
   const [paymenttype,setpaymenttype]=useState(true)
   const [mvc,setmvc]=useState(true)
   const [ach,seach]=useState(true)
-
+  const [signedres,setsignedres]=useState('')
   
   useEffect(()=>{
     setEmail(userInfo.email)
@@ -177,8 +177,7 @@ const BlugreenContract = ({navigation, route}) => {
           return false;
         } else if (checkIfEmpty(email)) {
           return false;
-        } 
-        else if (checkIfEmpty(phone)) {
+        } else if (checkIfEmpty(phone)) {
           return false;
         }else{
         return true;
@@ -270,6 +269,8 @@ const BlugreenContract = ({navigation, route}) => {
       );
       console.log('submitContract resp', resp?.data);
       if (resp?.data?.status) {
+        setsignedres(resp?.data)
+        setShowSignedContractModal(true)
         Toast.show(resp?.data?.message, Toast.SHORT);
       } else {
         // Toast.show(resp?.data?.message, Toast.SHORT);
@@ -279,7 +280,7 @@ const BlugreenContract = ({navigation, route}) => {
       console.log('error in submitContract', error);
     }
     setShowLoader(false);
-    setShowSignedContractModal(true);
+    // setShowSignedContractModal(true)
   };
   // useEffect(() => {
   //   getPrefillData();
@@ -339,7 +340,7 @@ const BlugreenContract = ({navigation, route}) => {
                 style={{}}
               />
               <MyText
-                text={`Our goal is to take the worry and hassle out of renting your vacation ownership points, and provide you with the value you truly deserve!`}
+                text={`Our goal is to take the worry and hassle out of monetizing your vacation ownership points, and provide you with the value you truly deserve!`}
                 textColor={"#353334"}
                 fontSize={13}
                 fontFamily="Verdana"
@@ -347,7 +348,7 @@ const BlugreenContract = ({navigation, route}) => {
                 style={{ marginTop: 20, fontWeight: 400 }}
               />
               <MyText
-                text={`We look forward to serving you by acting as an intermediary between you and the vacation rental guest.`}
+                text={`We look forward to serving you by acting as an intermediary between you and the guests using your points.`}
                 textColor={"#353334"}
                 fontSize={13}
                 fontFamily="Verdana"
@@ -380,7 +381,7 @@ const BlugreenContract = ({navigation, route}) => {
               ></View>
               <MyText
                 text={
-                  "We will get your points rented out for you as quickly as possible in the order they come in"
+                  "We will get your points monetized out for you as quickly as possible in the order they come in"
                 }
                 textColor="#353334"
                 fontSize={13}
@@ -571,7 +572,7 @@ const BlugreenContract = ({navigation, route}) => {
               <View style={styles.circle}></View>
               <MyText
                 text={
-                  "Once your account has been started, we will send you a payment according to how many points we used during that time period every two weeks."
+                  "Once your account has been started, we will send you a payment according to how many points we used on reservation that has checked in."
                 }
                 textColor="#ffff"
                 fontSize={13}
@@ -584,7 +585,7 @@ const BlugreenContract = ({navigation, route}) => {
               <View style={styles.circle}></View>
               <MyText
                 text={
-                  "We will use your account until all the agreed-upon points are rented to as close to that number as possible. (sometimes there might be a small remainder of points left.)"
+                  "We will use your account until all the agreedupon points are monetized to as close to that number as possible.(sometimes there might be a small remainder of points left.)"
                 }
                 textColor="#ffff"
                 fontSize={13}
@@ -796,7 +797,7 @@ const BlugreenContract = ({navigation, route}) => {
                   />
                   <MyText
                     text={
-                      "The owner is responsible for taxes on rentals facilitated by them. In certain cases, we will provide a 1099 form for any payments made to the owner. There are many tax benefits you can utilize when renting out your timeshares and we encourage you to get a qualified CPA to learn about the many tax deductions available to you."
+                      "The owner is responsible for any tax liabilities on any profits. In certain cases, we will provide a 1099 form for any payments made to the owner.There are many tax benefits you can utilize and we encourage you to get a qualified CPA to learn about the many tax deductions available to you."
                     }
                     textColor="#353334"
                     fontSize={13}
@@ -821,7 +822,7 @@ const BlugreenContract = ({navigation, route}) => {
                   />
                   <MyText
                     text={
-                      "We reserve the right to utilize necessary websites and arketing channels to execute the rentals of the points."
+                      "We reserve the right to utilize necessary channels to connect you with your guests."
                     }
                     textColor="#353334"
                     fontSize={13}
@@ -896,7 +897,7 @@ const BlugreenContract = ({navigation, route}) => {
                   />
                   <MyText
                     text={
-                      "The owner retains the ability to use their account independently at any time, as if they had not contracted with us for Points rental."
+                      "The owner retains the ability to use their account independently at any time, as if they had not contracted with us for guest concierge services."
                     }
                     textColor="#353334"
                     fontSize={13}
@@ -983,7 +984,7 @@ const BlugreenContract = ({navigation, route}) => {
               }}
             />
             <MyText
-              text={` If for any reason we went over the number of agreed-upon points or you don’t know who the reservation was from please contact us and we will rectify it immediately`}
+              text={` If for any reason we went over the number of agreed-upon points or you don’t know who the reservation was from please contact us and we will rectify it as quickly as possible.`}
               textColor="#353334"
               fontSize={13}
               fontFamily="Verdana"
@@ -1038,8 +1039,8 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{rentOut}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',borderRadius:25,justifyContent: 'center',marginTop:10}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{rentOut}</Text>
               </View>
              
         </View>
@@ -1057,8 +1058,8 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{selectedYear}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{selectedYear}</Text>
               </View>
              
         </View>
@@ -1075,12 +1076,12 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                 placeholder={''}
                 value={username}
                 setValue={setUserName}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1099,14 +1100,15 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                 placeholder={''}
                 value={paypalPassword}
                 setValue={setPaypalPassword}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
+             
              
         </View>
 
@@ -1123,8 +1125,8 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{pricePerPoint}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',justifyContent: 'center',borderRadius:30,marginTop:10}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{pricePerPoint}</Text>
               </View>
              
         </View>
@@ -1151,13 +1153,13 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  placeholder={''}
                  value={addressLine1}
                  setValue={setAddressLine1}
                  editable={isPaymentDetails}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1176,13 +1178,13 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  placeholder={''}
                  value={addressLine2}
                  setValue={setAddressLine2}
                  editable={isPaymentDetails}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1200,15 +1202,15 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  inputRef={emailRef}
                  placeholder={''}
                  value={email}
                  setValue={setEmail}
-                 editable={isPaymentDetails}
-                 onSubmitEditing={() => phoneRef.current.focus()}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                 editable={false} //isPaymentDetails
+                //  onSubmitEditing={() => phoneRef.current.focus()}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1227,18 +1229,18 @@ const BlugreenContract = ({navigation, route}) => {
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  inputRef={phoneRef}
                  placeholder={''}
                  value={phone}
-                 editable={isPaymentDetails}
+                 editable={false} //isPaymentDetails
                  keyboardType="number-pad"
                  maxLength={Platform.OS == 'android' ? 14 : 10}
                  onChangeText={text => formatPhoneNumber(text)}
-               isOnChangeText={true}
-                 onSubmitEditing={() => accountUserIdRef.current.focus()}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                 isOnChangeText={true}
+                //  onSubmitEditing={() => accountUserIdRef.current.focus()}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1331,13 +1333,13 @@ const BlugreenContract = ({navigation, route}) => {
                      />
                  </View>
 
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <TextInput
                         editable
                         maxLength={40}
                         onChangeText={text => {setPaypalEmail(text)}}
                         value={paypalEmail}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,height:40}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',height:40,borderColor:'transparent',top:-10}}
                       />
                      </View>
                     
@@ -1361,13 +1363,13 @@ const BlugreenContract = ({navigation, route}) => {
                      />
                  </View>
                    
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <MyTextInput
                         placeholder={''}
                         value={rotingnumber}
                         setValue={setrotingnumber}
                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
                      />      
                      </View>
                     
@@ -1385,13 +1387,14 @@ const BlugreenContract = ({navigation, route}) => {
                      />
                  </View>
                    
-                     <View style={{width:'50%'}}>
+                       
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <MyTextInput
                         placeholder={''}
                         value={acnumber}
                         setValue={setacnumber}
                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
                      />      
                      </View>
                     
@@ -1453,7 +1456,7 @@ const BlugreenContract = ({navigation, route}) => {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by Bluegreen Exchange Procedures.`}
+                  text={`Capitalized terms not defined herein shall have the same meaning as that given to them by Bluegreen Vacation Owners Exchange Procedures.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1538,7 +1541,25 @@ const BlugreenContract = ({navigation, route}) => {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`We will automatically carry forward the Number of Points Allocated into the following year on your behalf. We will make every effort to utilize those points in the following use year that had been rolled over by your program.`}
+                  text={`We will automatically carry forward the Number of Points Allocated into the following year on your behalf. The roll over date is set at 2 weeks prior to the deadline to rollover, unless you provide written notice to us at least 30 days prior to your rollover deadline.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`We will put a reminder in our system to roll over your points into the next use year to prevent losing any points. However, ultimately you are still responsible for the points being rolled over. So, we recommend you to also set a reminder to ensure that the points have been saved to the next use year at least two weeks prior to the deadline.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`Please take note that it is subject for fees when you banking your points. And if we roll over your points to the next year to complete the guest reservations, we will subtract the amount we paid for the rollover fee to get your points into the applicable year`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1669,7 +1690,7 @@ const BlugreenContract = ({navigation, route}) => {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`This change in status could include, but is not limited to:`}
+                  text={`10. This change in status could include, but is not limited to:`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1678,7 +1699,7 @@ const BlugreenContract = ({navigation, route}) => {
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Account suspension or foreclosure for non-payment;`}
+                  text={`1. Account suspension or foreclosure for non-payment;`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1687,7 +1708,7 @@ const BlugreenContract = ({navigation, route}) => {
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Warning for violation of commercial use clause; and`}
+                  text={`2. Warning for violation of commercial use clause; and`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1696,7 +1717,7 @@ const BlugreenContract = ({navigation, route}) => {
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Account suspension for “commercial use”.`}
+                  text={`3. Account suspension for “commercial use”.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1799,13 +1820,22 @@ const BlugreenContract = ({navigation, route}) => {
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agree- ment. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services. ii. Confidentiality: Both Parties shall maintain the confi- dentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties with- out the explicit consent of the data subject, except as required by law.`}
+                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agreement. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
                   textAlign="auto"
                   lineHeight={21}
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`ii. Confidentiality: Both Parties shall maintain the confi- dentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties without the explicit consent of the data subject, except as required by law.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, fontWeight: 400}}
                 />
                  <MyText
                   text={`17. Binding Effect:`}
@@ -1848,7 +1878,7 @@ const BlugreenContract = ({navigation, route}) => {
 
 
 {/* *************************KTJ Enterprises Inc. dba section******** */}
-          <View>
+<View>
           <View style={{marginHorizontal: 10}}>
          
        <Text style={{fontSize:13,color:'#000',fontWeight:'700',marginLeft:15,marginTop:20}}>KTJ Enterprises Inc. dba Timeshare Simplified</Text>
@@ -1886,7 +1916,7 @@ const BlugreenContract = ({navigation, route}) => {
                   text={printName}
                   textColor="#353334"
                   fontSize={13}
-                  fontFamily="Verdana"
+                  fontFamily="AlexBrush-Regular"
                   textAlign="auto"
                   lineHeight={19}
                   style={{marginLeft: 10,fontStyle: 'italic', }}
@@ -1999,7 +2029,7 @@ const BlugreenContract = ({navigation, route}) => {
                    text={userInfo.name}
                     textColor="#353334"
                     fontSize={13}
-                    fontFamily="Verdana"
+                    fontFamily="AlexBrush-Regular"
                     textAlign="auto"
                     lineHeight={19}
                     style={{marginLeft: 10,fontStyle: 'italic', }}
@@ -2114,6 +2144,11 @@ const BlugreenContract = ({navigation, route}) => {
             </View>
             </View>
 
+{/* ********************end***************************** */}
+
+
+
+
 
           <View
             style={{
@@ -2148,37 +2183,10 @@ const BlugreenContract = ({navigation, route}) => {
         visitWebsite={visitWebsite}
         davename={developerName}
         gotoSellMorePoints={gotoSellMorePoints}
+        point={signedres.waiting_number}
       />
     </>
   );
 };
 
 export default BlugreenContract;
-// const SimpleTextInput = ({
-//   inputRef,
-//   value,
-//   setValue = () => {},
-//   placeholder,
-//   keyboardType,
-//   maxLength,
-//   onSubmitEditing,
-//   editable,
-//   placeholderTextColor = Colors.LIGHT_GRAY,
-//   onTouchStart,
-//   fontSize = 14,
-//   style = {},
-//   inputContainerStyle = {},
-// }) => {
-//   return (
-//     <View style={{borderBottomWidth:1.5,backgroundColor:'red'}} >
-//       <TextInput
-
-//         placeholder={placeholder}
-//         keyboardType={keyboardType}
-//         value={value}
-//         onChangeText={newText => setValue(newText)}
-//         editable={editable}
-//       />
-//     </View>
-//   );
-// };

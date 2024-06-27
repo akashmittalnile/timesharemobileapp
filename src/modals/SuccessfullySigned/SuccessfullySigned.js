@@ -15,10 +15,14 @@ import Modal from 'react-native-modal';
 //import : custom components
 import MyText from 'components/MyText/MyText';
 //import : globals
-import {Colors, Constant, MyIcon, ScreenNames} from 'global/Index';
+import {Colors, Constant, MyIcon, ScreenNames,Service} from 'global/Index';
 //import : styles
 import {styles} from './SuccessfullySignedStyle';
 import MyButton from 'components/MyButton/MyButton';
+// import {Colors, Constant, MyIcon, ScreenNames, Service} from '../../../global/Index';
+import {connect, useSelector} from 'react-redux';
+import {WebView} from 'react-native-webview';
+import {width} from '../../global/Constant';
 
 const SuccessfullySigned = ({
   visible,
@@ -26,7 +30,8 @@ const SuccessfullySigned = ({
   viewSignedContract,
   visitWebsite,
   davename,
-  gotoSellMorePoints
+  gotoSellMorePoints,
+  point
 }) => {
   //variables : navigation
   const navigation = useNavigation();
@@ -36,6 +41,38 @@ const SuccessfullySigned = ({
   const closeModal = () => {
     setVisibility(false);
   };
+  const [videoData, setVideoData] = useState([]);
+  const [showLoader, setShowLoader] = useState(false);
+  const [showLoader2, setShowLoader2] = useState(false);
+  const userToken = useSelector(state => state.user.userToken);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      getVideos();
+    });
+    
+    return unsubscribe;
+  }, [navigation]);
+
+
+
+  const getVideos = async () => {
+    console.log('setVideoData resp');
+    setShowLoader2(true);
+    try {
+      const resp = await Service.getApiWithToken(userToken, Service.VIDEOS);
+      console.log('setVideoData resp', resp?.data);
+      if (resp?.data?.status) {
+        setVideoData(resp?.data?.allvideos);
+      } else {
+        // Toast.show(resp.data.message, Toast.SHORT);
+      }
+    } catch (error) {
+      console.log('error in setVideoData', error);
+    }
+    setShowLoader2(false);
+  };
+  
   //UI
   return (
     <Modal
@@ -69,10 +106,59 @@ const SuccessfullySigned = ({
           textColor={Colors.THEME_GRAY}
           style={{marginTop: 5, marginBottom: 10}}
         />
-        <Image
+         <MyText
+          text={"Congratulations. You’re on your way to monetizing your timeshare points!"}
+          fontSize={14}
+          textColor={Colors.THEME_GRAY}
+          style={{marginTop: 5, marginBottom: 10}}
+        />
+        <MyText
+        text={`You are now in our queue with number ${point} and we will notify you as you get closer to us using your account!`}
+        fontSize={14}
+        textColor={Colors.THEME_GRAY}
+        style={{marginTop: 5, marginBottom: 10}}
+      />
+      <MyText
+      text={"Once your account has been started payment go out every two weeks for whatever guest Reservation checks in during that time."}
+      fontSize={14}
+      textColor={Colors.THEME_GRAY}
+      style={{marginTop: 5, marginBottom: 10}}
+    />
+        {/* <Image
           source={require('assets/images/sign-contract-modal-bg.png')}
           style={styles.bg}
-        />
+          {"multicast_id":989924197124312191,"success":1,"failure":0,"canonical_ids":0,"results":[{"message_id":"1715681236654934"}]}{"status":true,"message":"Contract signed  successfully.","waiting_number":204}
+        /> */}
+        {/* {videoData?.length > 0 ? ( */}
+        {true ? (
+          <View style={{ width: '100%',
+            height: 219,
+            borderRadius: 10,
+            overflow: 'hidden',marginBottom:10}}>
+            <WebView
+              source={{
+                // uri: videoData[0]?.url_link,
+                uri: 'https://drive.google.com/file/d/1lrHeq9lp5kr8-OqLVPqfkJ1DMajwDmMN/view?usp=sharing'
+              }}
+              contentMode="mobile"
+              style={{ width: '100%',
+                height: 219,
+                opacity: 0.99,}}
+            />
+          </View>
+        ) : (
+          <View style={{marginTop: 10, alignItems: 'center'}}>
+            <Image source={require('../../assets/images/no-data.png')} />
+            <MyText
+              text="No Videos found"
+              textColor={Colors.THEME_GRAY}
+              fontSize={16}
+              fontFamily="medium"
+              textAlign="center"
+              style={{marginTop: 10}}
+            />
+          </View>
+        )}
         <MyButton
           text={'Visit website'}
           onPress={visitWebsite}

@@ -26,13 +26,18 @@ import {interpolate} from 'react-native-reanimated';
 const terms = [
   {
     id: '1',
-    text: 'Your contract will only be excepted if we have enough time to rent out your points',
+    text: 'Your contract will only be accepted if we have enough time to rent out your points',
     isSelected: false,
   },
+  // {
+  //   id: '2',
+  //   isSelected: false,
+  //   text: 'You understand the only way to rent the points is for us to log into your account and make the reservations on your behalf',
+  // },
   {
     id: '2',
     isSelected: false,
-    text: 'You understand the only way to rent the points is for us to log into your account and make the reservations on your behalf',
+    text: 'You will be paid within two weeks of the guest checking into the reservation',
   },
   {
     id: '3',
@@ -49,10 +54,15 @@ const terms = [
     isSelected: false,
     text: 'You understand if we pay you upfront for points and there is a cancellation we have the right to reuse those points',
   },
+  // {
+  //   id: '6',
+  //   isSelected: false,
+  //   text: 'You understand once they email you they will start your account. The payments go out every two weeks for whatever points they used.',
+  // },
   {
     id: '6',
     isSelected: false,
-    text: 'You understand once they email you they will start your account. The payments go out every two weeks for whatever points they used.',
+    text: 'You understand once they email you they will start your account. Then payments go out every two weeks for whatever points they used for a guest reservation that has checked in.',
   },
   {
     id: '7',

@@ -15,6 +15,7 @@ bluegreenbanner: require('../assets/newimages/bluegreenbanner.png'),
 clubwyndhambanner: require('../assets/newimages/clubwyndhambanner.png'),
 diamondbanner:require('../assets/newimages/diamondbanner.png'),
 lawrencebanner:require('../assets/newimages/lawrencebanner.png'),
+hatt:require('../assets/newimages/hatt.png'),
 worldmarkbanner: require('../assets/newimages/worldmark.png'),
 marriottbanner: require('../assets/newimages/marriot.png'),
 starwoodbanner:require('../assets/newimages/starwood.png')

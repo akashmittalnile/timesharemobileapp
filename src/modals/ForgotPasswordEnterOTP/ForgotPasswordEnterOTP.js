@@ -20,6 +20,7 @@ import { Colors, Constant, MyIcon, ScreenNames } from 'global/Index';
 import { styles } from './ForgotPasswordEnterOTPStyle';
 import MyButton from 'components/MyButton/MyButton';
 import MyTextInput from '../../components/MyTextInput/MyTextInput';
+import useKeyboard from '../../components/useKeyboard';
 
 const ForgotPasswordEnterOTP = ({
     visible,
@@ -48,6 +49,7 @@ const ForgotPasswordEnterOTP = ({
     const closeModal = () => {
         setVisibility(false);
     };
+    const isKeyboardOpen = useKeyboard();
     //UI
     return (
         <Modal
@@ -64,9 +66,11 @@ const ForgotPasswordEnterOTP = ({
             backdropColor="transparent"
             style={styles.modal}>
             <View style={styles.modalContent}>
+               
+                
                 <Image source={require('assets/images/successful-img.png')} style={styles.mainImg} />
                 <MyText text='Forgot Password?' fontSize={24} fontFamily='medium' textColor={Colors.THEME_BLUE} style={{ marginTop: 5 }} />
-                <MyText text={`Please Enter 4 Digit OTP Received In Your Registered Email ID`} fontSize={12} textColor={'#BCBBB7'} textAlign='center' style={{ marginTop: 5 }} />
+                <MyText text={`Please enter the 4 digit OTP received on your registered email id`} fontSize={12} textColor={'#BCBBB7'} textAlign='center' style={{ marginTop: 5 }} />
                 <View style={styles.flexRowView}>
                     <TextInput
                         placeholder=""
@@ -195,10 +199,18 @@ const ForgotPasswordEnterOTP = ({
                     // marginBottom={10}
                     />
                 ) : null}
-                <MyButton text={'Validated OTP'}
+                <MyButton text={'Validate OTP'}
                     onPress={openNewPasswordModal}
                     style={styles.buttonStyle}
                 />
+
+
+                {isKeyboardOpen ?
+                <View style={{width:'100%',height:250}}  />
+                : null
+                }
+                
+               
             </View>
         </Modal>
     );

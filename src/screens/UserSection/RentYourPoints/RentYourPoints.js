@@ -85,10 +85,6 @@ const RentYourPoints = ({navigation, dispatch, route}) => {
       const resp = await Service.getApiWithToken(userToken, Service.developers_category+'1');
       console.log('developers_category resp', resp?.data);
       if (resp?.data?.status) {
-        // {"data": [{"category_name": "Owners", "id": 1, "years": [{year:2023,price_per_point:0.75},{year:2024,price_per_point:0.75},{year:2025,price_per_point:0.75}]},
-        //  {"category_name": "Presidential", "id": 2, "price_per_point": "0.45", "year": 2022}, 
-        //  {"category_name": "Owners", "id": 1, "price_per_point": "0.75", "year": 2024}],
-        //   "status": true}
         var myarr=[]
         var ddd=resp?.data.data
         for(let i=0;i<ddd.length;i++){
@@ -185,7 +181,7 @@ const RentYourPoints = ({navigation, dispatch, route}) => {
       totalAmount = pointPrice * points
     }
     const totalAmountB = checkIfDecimal(totalAmount)
-      ? Number(totalAmount).toFixed(2)
+      ? Number(totalAmount).toFixed(4)
       : totalAmount;
     // console.log('pointPrice, totalAmountB', pointPrice, totalAmountB);
     console.log('rent your points will send this data', {

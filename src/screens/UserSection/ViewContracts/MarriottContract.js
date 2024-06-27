@@ -122,6 +122,7 @@ const MarriottContract = ({navigation, route}) => {
   const [rotingnumber,setrotingnumber]=useState('');
   const [acnumber,setacnumber]=useState('');
   const [achnumber,setachnumber]=useState('')
+  const [signedres,setsignedres]=useState('')
 
   const gotoSignedContracts = () => {
     navigation.navigate(ScreenNames.CONTRACTS);
@@ -313,6 +314,7 @@ const MarriottContract = ({navigation, route}) => {
       };
       if (paymenttype=='ach') {
         data.ach_number = achnumber;
+        data.account_number =acnumber;
       }
       if (paymenttype==true) {
         data.paypal_email = paypalEmail;
@@ -341,6 +343,8 @@ const MarriottContract = ({navigation, route}) => {
       );
       console.log('submitContract resp', resp?.data);
       if (resp?.data?.status) {
+        setsignedres(resp?.data)
+        setShowSignedContractModal(true)
         Toast.show(resp?.data?.message, Toast.SHORT);
       } else {
         // Toast.show(resp?.data?.message, Toast.SHORT);
@@ -350,7 +354,7 @@ const MarriottContract = ({navigation, route}) => {
       console.log('error in submitContract', error);
     }
     setShowLoader(false);
-     setShowSignedContractModal(true);
+   //  setShowSignedContractModal(true);
   };
   // useEffect(() => {
   //   getPrefillData();
@@ -934,7 +938,7 @@ console.log('====================================');
                   />
                   <MyText
                     text={
-                      'The owner is responsible for any tax liabilities on any profits. There are actually many tax benefits you can utilize and we encourage you. In certain cases,we will provide a 1099 form for any payments made to the owner. There are many tax benefits you can utilize and we encourage you to get a qualified CPA to learn about the many tax deductions available to you.'
+                      'The owner is responsible for any tax liabilities on any profits. In certain cases, we will provide a 1099 form for any payments made to the owner. There are many tax benefits you can utilize and we encourage you to get a qualified CPA to learn about the many tax deductions available to you.'
                     }
                     textColor="#353334"
                     fontSize={13}
@@ -1172,8 +1176,8 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{rentOut}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',borderRadius:25,justifyContent: 'center',marginTop:10}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{rentOut}</Text>
               </View>
              
         </View>
@@ -1191,8 +1195,8 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{selectedYear}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{selectedYear}</Text>
               </View>
              
         </View>
@@ -1209,12 +1213,12 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                 placeholder={''}
                 value={username}
                 setValue={setUserName}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1233,14 +1237,15 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                 placeholder={''}
                 value={paypalPassword}
                 setValue={setPaypalPassword}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
+             
              
         </View>
 
@@ -1257,8 +1262,8 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{borderBottomColor:'#000',borderBottomWidth:1,width:'30%'}}>
-              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21,marginTop: 20, fontWeight: 400,textAlign:'center'}}>{pricePerPoint}</Text>
+          <View style={{borderColor:'#000',borderWidth:1,width:'30%',justifyContent: 'center',borderRadius:30,marginTop:10}}>
+              <Text style={{fontSize:13,color:'#353334',fontFamily:'Verdana',lineHeight:21, fontWeight: 400,textAlign:'center'}}>{pricePerPoint}</Text>
               </View>
              
         </View>
@@ -1285,13 +1290,13 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  placeholder={''}
                  value={addressLine1}
                  setValue={setAddressLine1}
                  editable={isPaymentDetails}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1310,13 +1315,13 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  placeholder={''}
                  value={addressLine2}
                  setValue={setAddressLine2}
                  editable={isPaymentDetails}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
              
@@ -1334,17 +1339,18 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  inputRef={emailRef}
                  placeholder={''}
                  value={email}
                  setValue={setEmail}
-                 editable={isPaymentDetails}
-                 onSubmitEditing={() => phoneRef.current.focus()}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                 editable={false} //isPaymentDetails
+               //  onSubmitEditing={() => phoneRef.current.focus()}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
+             
              
         </View>
 
@@ -1361,21 +1367,20 @@ console.log('====================================');
               />
           </View>
             
-              <View style={{width:'50%'}}>
+          <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
               <MyTextInput
                  inputRef={phoneRef}
                  placeholder={''}
                  value={phone}
-                 editable={isPaymentDetails}
+                 editable={false} //isPaymentDetails
                  keyboardType="number-pad"
                  maxLength={Platform.OS == 'android' ? 14 : 10}
                  onChangeText={text => formatPhoneNumber(text)}
                isOnChangeText={true}
-                 onSubmitEditing={() => accountUserIdRef.current.focus()}
-                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                // onSubmitEditing={() => accountUserIdRef.current.focus()}
+                style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
               />      
               </View>
-             
         </View>
 
               <View style={{marginHorizontal: 10}}>
@@ -1441,7 +1446,7 @@ console.log('====================================');
                    onPress={()=>{
                     setPersonalCheck('N');
                     setIsPersonalCheck1(false);
-                    setIsPaymentDetails(true);
+                    setIsPaymentDetails(true); 
                      setpaymenttype('ach')
                      setPaypalEmail('')
                     }}>
@@ -1465,98 +1470,23 @@ console.log('====================================');
                      />
                  </View>
 
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <TextInput
                         editable
                         maxLength={40}
                         onChangeText={text => {setPaypalEmail(text)}}
                         value={paypalEmail}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,height:40}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',height:40,borderColor:'transparent',top:-10}}
                       />
                      </View>
                     
                </View>
                : paymenttype==false ?
                <></>
-              //  <>
-              //    <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
-              //    <View style={{width:'50%'}}>
-              //        <MyText
-              //          text={`Frist Name: `}
-              //          textColor="#353334"
-              //          fontSize={13}
-              //          fontFamily="Verdana"
-              //          textAlign="auto"
-              //          lineHeight={21}
-              //          style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
-              //        />
-              //    </View>
-                   
-              //        <View style={{width:'50%'}}>
-              //        <MyTextInput
-              //            placeholder={''}
-              //            value={firstName}
-              //            setValue={setFirstName}
-              //            editable={isPaymentDetails}
-              //           style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
-              //        />      
-              //        </View>
-                    
-              //  </View>
-              //  <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
-              //    <View style={{width:'50%'}}>
-              //        <MyText
-              //          text={`Last Name: `}
-              //          textColor="#353334"
-              //          fontSize={13}
-              //          fontFamily="Verdana"
-              //          textAlign="auto"
-              //          lineHeight={21}
-              //          style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
-              //        />
-              //    </View>
-                   
-              //        <View style={{width:'50%'}}>
-              //        <MyTextInput
-              //           placeholder={''}
-              //           value={lastName}
-              //           setValue={setLastName}
-              //           editable={isPaymentDetails}
-              //           style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
-              //        />      
-              //        </View>
-                    
-              //  </View>
-            
-              //  </>
                : paymenttype=='ach' ?
                <>
              
            
-            {/* <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
-               <View style={{width:'50%'}}>
-                   <MyText
-                     text={`ACH Number: `}
-                     textColor="#353334"
-                     fontSize={13}
-                     fontFamily="Verdana"
-                     textAlign="auto"
-                     lineHeight={21}
-                     style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
-                   />
-               </View>
-                 
-                   <View style={{width:'50%'}}>
-                   <MyTextInput
-                      placeholder={''}
-                      value={achnumber}
-                      setValue={setachnumber}
-                      // editable={isPaymentDetails}
-                      style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
-                   />      
-                   </View>
-                  
-             </View> */}
                <View style={{flexDirection:'row',justifyContent:'space-between',width:'95%'}}>
                  <View style={{width:'50%'}}>
                      <MyText
@@ -1570,13 +1500,13 @@ console.log('====================================');
                      />
                  </View>
                    
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <MyTextInput
                         placeholder={''}
                         value={rotingnumber}
                         setValue={setrotingnumber}
                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
                      />      
                      </View>
                     
@@ -1594,13 +1524,13 @@ console.log('====================================');
                      />
                  </View>
                    
-                     <View style={{width:'50%'}}>
+                 <View style={{borderColor:'#000',borderWidth:1,width:'50%',borderRadius:25,justifyContent: 'center',marginTop:10,top:2,height:40}}>
                      <MyTextInput
                         placeholder={''}
                         value={acnumber}
                         setValue={setacnumber}
                         editable={isPaymentDetails}
-                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20}}
+                        style={{...styles.textInputStyle, ...styles.textInputStyle3,width:'100%',left:-20,borderColor:'transparent'}}
                      />      
                      </View>
                     
@@ -1877,7 +1807,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
                 />
                  <MyText
-                  text={`This change in status could include, but is not limited to:`}
+                  text={`10. This change in status could include, but is not limited to:`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1886,7 +1816,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Account suspension or foreclosure for non-payment;`}
+                  text={`1. Account suspension or foreclosure for non-payment;`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1895,7 +1825,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Warning for violation of commercial use clause; and`}
+                  text={`2. Warning for violation of commercial use clause; and`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -1904,7 +1834,7 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 5, fontWeight: 400}}
                 />
                 <MyText
-                  text={`Account suspension for “commercial use”.`}
+                  text={`3. Account suspension for “commercial use”.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -2007,7 +1937,16 @@ console.log('====================================');
                   style={{marginLeft: 20, marginTop: 20, fontWeight: 700}}
                 />
                 <MyText
-                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agree- ment. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services. ii. Confidentiality: Both Parties shall maintain the confi- dentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties with- out the explicit consent of the data subject, except as required by law.`}
+                  text={`i. Data Collection and Usage: TS may collect and process personal data of Program Member and Guests as necessary for the performance  of services under this Agreement. Program Member acknowledges and consents to the collection,  storage,  and  use  of  personal  data  for  the  purposes  outlined  in  this  Agree- ment. Personal data will only be used for the purpose of facilitating and managing Guest  reservations and related services.`}
+                  textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20, marginTop: 20, fontWeight: 400}}
+                />
+                 <MyText
+                  text={`ii. Confidentiality: Both Parties shall maintain the confi- dentiality and security of any personal data shared or accessed during the provision of services under this Agreement. Personal data shall not be disclosed to third parties with- out the explicit consent of the data subject, except as required by law.`}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
@@ -2053,172 +1992,89 @@ console.log('====================================');
             
             </View>
          
-          <View
-            style={{
-              height: 10,
-              width: '100%',
-              backgroundColor: '#f5f5f2',
-            }}></View>
-              <View style={{width:'100%',flexDirection:'row',justifyContent:'space-between',paddingHorizontal:15,marginTop:15}}>
-              <View style={{paddingHorizontal:14,paddingVertical:7, backgroundColor:Colors.THEME_BLUE,borderRadius:30}}>
-              <Text style={{fontSize:13,color:'#fff',textAlign:'center',fontWeight:'700'}}>KTJ Enterprises Inc. dba</Text>
-              </View>
-              <View style={{paddingHorizontal:14,paddingVertical:7, backgroundColor:Colors.THEME_BLUE,borderRadius:30}}>
-              <Text style={{fontSize:13,color:'#fff',textAlign:'center',fontWeight:'700'}}>Program Member</Text>
-              </View>
-              </View>
-               <MyText
-              text={`Timeshare Simplified`}
-              textColor="#000"
-              fontSize={15}
-              fontFamily="Verdana"
-              textAlign="auto"
-              lineHeight={20}
-              style={{marginLeft: 20, marginTop: 5, fontWeight: 700}}
-            />
-              <View
+     
+{/* *************************KTJ Enterprises Inc. dba section******** */}
+<View>
+          <View style={{marginHorizontal: 10}}>
+         
+       <Text style={{fontSize:13,color:'#000',fontWeight:'700',marginLeft:15,marginTop:20}}>KTJ Enterprises Inc. dba Timeshare Simplified</Text>
+
+            <View
               style={{
-                flexDirection: 'row',
+              
                 marginBottom: 20,
-                // marginTop: 20,
-                justifyContent: 'space-around',paddingHorizontal:15
+                marginTop: 20,
+            
               }}>
-              <View style={{width: '68%'}}>
              
-                <MyText
+             <View
+                  style={{
+                    width: '80%',
+                   flexDirection:'row'
+                  }}>
+                
+                 <MyText
+                  text={`Signature :   `}                
+                    textColor="#353334"
+                  fontSize={13}
+                  fontFamily="Verdana"
+                  textAlign="auto"
+                  lineHeight={21}
+                  style={{marginLeft: 20,  fontWeight: 400}}
+                />
+                  <View
+                  style={{
+                   borderBottomWidth: 0.5,
+                    width: '80%',
+                 
+                  }}>
+                   <MyText
                   text={printName}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="AlexBrush-Regular"
                   textAlign="auto"
                   lineHeight={19}
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3,fontStyle: 'italic',left:15}}
-                />
-                <View style={{width:'75%',height:1,backgroundColor:'#000',marginBottom:3,marginLeft:15}} />
-            
-                <MyText
-                   text={`Signature`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
+                  style={{marginLeft: 10,fontStyle: 'italic', }}
                 />
                
-                <MyTextInput
-                  placeholder={''}
-                  value={printName}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Printed Name`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                />
-                
-                
-                <View style={{flexDirection: 'row'}}>
-                  <MyText
-                    text={`Date :`}
-                    textColor="#353334"
-                    fontSize={13}
-                    fontFamily="Verdana"
-                    textAlign="auto"
-                    lineHeight={19}
-                    style={{marginLeft: 20, marginTop: 20}}
-                  />
-                 <View style={{width:184}}>
-                 <MyTextInput
-                    // inputRef={emailRef}
-                    placeholder={''}
-                    editable={false}
-                    value={moment(new Date()).format('MM/DD/YYYY')}
-                    setValue={setAgreementEnteredIntoOn}
-                    onSubmitEditing={() => anniStartDates.current.focus()}
-                    // style={{...styles.textInputStyle}}
-                    // textInputstyle={{padding: 0, marginLeft:10}}
-                    // isValidationError && checkIfEmpty(agreementEnteredIntoOn)
-                    //   ? styles.redBorderNotFilled
-                    //   : null
-                    style={{
-                      ...styles.textInputStyle,
-                      ...styles.textInputStyle6,top:6
-                    }}
-                  />
-                 </View>
+               </View>
                 </View>
-                
-              </View>
 
-              <View style={{width: '50%'}}>
-             
+                <View
+                  style={{
+                    width: '80%',
+                   flexDirection:'row',
+                   marginTop:20
+                  }}>
+                
                  <MyText
-                  text={userInfo.name}
-                  textColor="#353334"
+                 text={`Printed Name :`}         
+                    textColor="#353334"
                   fontSize={13}
-                  fontFamily="AlexBrush-Regular"
+                  fontFamily="Verdana"
                   textAlign="auto"
-                  lineHeight={19}
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3,fontStyle: 'italic',left:15}}
+                  lineHeight={21}
+                  style={{marginLeft: 20,  fontWeight: 400}}
                 />
-                <View style={{width:'75%',height:1,backgroundColor:'#000',marginBottom:3,marginLeft:15}} />
-              
-                <MyText
-                   text={`Signature`}
+                  <View
+                  style={{
+                   borderBottomWidth: 0.5,
+                    width: '80%',
+                  
+                  }}>
+                   <MyText
+                  text={printName}
                   textColor="#353334"
                   fontSize={13}
                   fontFamily="Verdana"
                   textAlign="auto"
                   lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
+                  style={{marginLeft: 10, }}
                 />
                
-                <MyTextInput
-                  placeholder={''}
-                  value={userInfo.name}
-                  setValue={setPrintName}
-                  editable={false}
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Printed Name`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                />
-                
-                <MyTextInput
-                  placeholder={''}
-                  value={userInfo.contact}
-                  setValue={setPrintName}
-                  editable={false}
-                  
-                  style={{...styles.textInputStyle, ...styles.textInputStyle3}}
-                />
-                <MyText
-                  text={`Phone Number`}
-                  textColor="#353334"
-                  fontSize={13}
-                  fontFamily="Verdana"
-                  textAlign="auto"
-                  lineHeight={19}
-                  style={{marginLeft: 30,marginTop:-5 }}
-                />
-                 
-                
-
-
+               </View>
+                </View>
 
                 <View style={{flexDirection: 'row'}}>
                   <MyText
@@ -2230,29 +2086,184 @@ console.log('====================================');
                     lineHeight={19}
                     style={{marginLeft: 20, marginTop: 20}}
                   />
-                 <View style={{width:184}}>
-                 <MyTextInput
-                    // inputRef={emailRef}
-                    placeholder={''}
-                    editable={false}
-                    value={moment(new Date()).format('MM/DD/YYYY')}
-                    setValue={setAgreementEnteredIntoOn}
-                    onSubmitEditing={() => anniStartDates.current.focus()}
-                    // style={{...styles.textInputStyle}}
-                    // textInputstyle={{padding: 0, marginLeft:10}}
-                    // isValidationError && checkIfEmpty(agreementEnteredIntoOn)
-                    //   ? styles.redBorderNotFilled
-                    //   : null
-                    style={{
-                      ...styles.textInputStyle,
-                      ...styles.textInputStyle6,top:7
-                    }}
-                  />
-                 </View>
+                  <View style={{width: 184}}>
+                    <MyTextInput
+                      placeholder={''}
+                      editable={false}
+                      value={moment(new Date()).format('MM/DD/YYYY')}
+                   
+                      setValue={setAgreementEnteredIntoOn}
+                      onSubmitEditing={() => anniStartDates.current.focus()}
+                    
+                      style={{
+                        ...styles.textInputStyle,top:7,left:5,
+                        ...styles.textInputStyle6,
+                      }}
+                    />
+                  </View>
                 </View>
+
+
+             
+            </View>
+          </View>
+
+          <View style={{marginHorizontal: 10}}>
+         
+         <Text style={{fontSize:13,color:'#000',fontWeight:'700',marginLeft:15,marginTop:20}}>Program Member Full Name and Signature</Text>
+  
+              <View
+                style={{
                 
+                  marginBottom: 20,
+                  marginTop: 20,
+              
+                }}>
+               
+               <View
+                    style={{
+                      width: '80%',
+                     flexDirection:'row'
+                    }}>
+                  
+                   <MyText
+                    text={`Signature :   `}                
+                      textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={21}
+                    style={{marginLeft: 20,  fontWeight: 400}}
+                  />
+                    <View
+                    style={{
+                     borderBottomWidth: 0.5,
+                      width: '80%',
+                   
+                    }}>
+                     <MyText
+                   text={userInfo.name}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="AlexBrush-Regular"
+                    textAlign="auto"
+                    lineHeight={19}
+                    style={{marginLeft: 10,fontStyle: 'italic', }}
+                  />
+                 
+                 </View>
+                  </View>
+  
+                  <View
+                    style={{
+                      width: '80%',
+                     flexDirection:'row',
+                     marginTop:20
+                    }}>
+                  
+                   <MyText
+                   text={`Printed Name :`}         
+                      textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={21}
+                    style={{marginLeft: 20,  fontWeight: 400}}
+                  />
+                    <View
+                    style={{
+                     borderBottomWidth: 0.5,
+                      width: '80%',
+                    
+                    }}>
+                     <MyText
+                   text={userInfo.name}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={19}
+                    style={{marginLeft: 10, }}
+                  />
+                 
+                 </View>
+                  </View>
+  
+                  <View
+                    style={{
+                      width: '80%',
+                     flexDirection:'row',
+                     marginTop:20
+                    }}>
+                  
+                   <MyText
+                   text={`Phone Number : `} 
+                      textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={21}
+                    style={{marginLeft: 20,  fontWeight: 400}}
+                  />
+                    <View
+                    style={{
+                     borderBottomWidth: 0.5,
+                      width: '80%',
+                    
+                    }}>
+                     <MyText
+                   text={userInfo.contact}
+                    textColor="#353334"
+                    fontSize={13}
+                    fontFamily="Verdana"
+                    textAlign="auto"
+                    lineHeight={19}
+                    style={{marginLeft: 10, }}
+                  />
+                 
+                 </View>
+                  </View>
+
+                 
+
+
+                  <View style={{flexDirection: 'row'}}>
+                    <MyText
+                      text={`Date :`}
+                      textColor="#353334"
+                      fontSize={13}
+                      fontFamily="Verdana"
+                      textAlign="auto"
+                      lineHeight={19}
+                      style={{marginLeft: 20, marginTop: 20}}
+                    />
+                    <View style={{width: 184}}>
+                      <MyTextInput
+                        placeholder={''}
+                        editable={false}
+                        value={moment(new Date()).format('MM/DD/YYYY')}
+                     
+                        setValue={setAgreementEnteredIntoOn}
+                        onSubmitEditing={() => anniStartDates.current.focus()}
+                      
+                        style={{
+                          ...styles.textInputStyle,top:7,left:5,
+                          ...styles.textInputStyle6,
+                        }}
+                      />
+                    </View>
+                  </View>
+  
+  
+               
               </View>
             </View>
+            </View>
+
+{/* ********************end***************************** */}
+
+
+
 
           <View style={{marginTop: 20}}>
             <Image
@@ -2277,6 +2288,7 @@ console.log('====================================');
         visitWebsite={visitWebsite}
         davename={developerName}
         gotoSellMorePoints={gotoSellMorePoints}
+        point={signedres.waiting_number}
       />
     </>
   );

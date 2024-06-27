@@ -1,5 +1,5 @@
 //import : react components
-import React, {useEffect} from 'react';
+import React, {useEffect,useState} from 'react';
 import {
   View,
   SafeAreaView,
@@ -18,15 +18,17 @@ import {Colors} from 'global/Index';
 import Drawer from './src/navigation/Drawer/Drawer';
 //import : redux
 import {Provider} from 'react-redux';
-import {store} from 'src/reduxToolkit/store/store';
+import {store} from './src/reduxToolkit/store/store';
 //import : notification
 import {NotificationAndroid} from './NotificationAndroid';
 import {NotificationManagerIOS} from './NotificationManagerIOS';
 import messaging from '@react-native-firebase/messaging';
 import {AccessToken,AuthenticationToken,LoginManager,Profile,Settings,GraphRequest, GraphRequestManager} from 'react-native-fbsdk-next';
-
+import AppUpdate from './src/components/AppUpdate';
+import VersionCheck from 'react-native-version-check';
 const App = () => {
   //function
+  const [isUpdatedAvailable, setIsUpdatedAvailable] = useState(false);
   async function requestUserPermission() {
     const authorizationStatus = await messaging().requestPermission({
       sound: false,
@@ -47,6 +49,7 @@ const App = () => {
   //variables : hook
   //hook : useEffect
   useEffect(() => {
+    checkAppUpdate()
     gettoken()
    if(Platform.OS=='ios'){
       Settings.setAppID('400809085634130');
@@ -109,6 +112,24 @@ const App = () => {
     });
   }, []);
   
+  const checkAppUpdate = () => {
+    var currentVersion = VersionCheck.getCurrentVersion();
+    VersionCheck.getLatestVersion({}).then(latestVersion => {
+      VersionCheck.needUpdate({
+        currentVersion: currentVersion,
+        latestVersion: latestVersion,
+      }).then(res => {
+        console.log('====================================');
+        console.log('Ashish',res);
+        console.log('====================================');
+        // setIsUpdatedAvailable(true);
+        if (res.isNeeded) {
+          setIsUpdatedAvailable(true);
+        }
+      });
+    });
+  };
+
   const gettoken = () => {
     messaging().getToken().then((token) => {
     
@@ -129,6 +150,10 @@ const App = () => {
           }}>
           <StatusBar backgroundColor={Colors.THEME_BLUE} />
           <Drawer />
+          <AppUpdate
+            visible={isUpdatedAvailable}
+            setVisibility={setIsUpdatedAvailable}
+          />
         </SafeAreaView>
       </NavigationContainer>
     </Provider>

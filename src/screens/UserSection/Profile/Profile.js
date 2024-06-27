@@ -41,6 +41,9 @@ import DropDownPicker from 'react-native-dropdown-picker';
 const H = Dimensions.get('screen').height;
 const W = Dimensions.get('screen').width;
 const userImg = `https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8bWFufGVufDB8fDB8fHww&auto=format&fit=crop&w=500&q=60`;
+import {CommonActions} from '@react-navigation/core';
+import {logOutUser, setUser} from '../../../reduxToolkit/reducer/user';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = ({ navigation, dispatch }) => {
   //variables
@@ -81,6 +84,33 @@ const Profile = ({ navigation, dispatch }) => {
     }
    
   }, []);
+
+  const gotoWelcome = () =>
+    CommonActions.reset({
+      index: 1,
+      routes: [{name: ScreenNames.WELCOME}],
+  });
+
+  const Mydelete = async () => {
+    setShowLoader(true);
+    try {
+      const resp = await Service.getApiWithToken(
+        userToken,
+        Service.DELETE,
+        {}
+      );
+      console.log('logout resp', resp);
+      if (resp?.data?.status) {
+       
+        navigation.dispatch(gotoWelcome)
+        dispatch(logOutUser());
+        await AsyncStorage.clear();
+      }
+    } catch (error) {
+      console.log('error in logout', error);
+    }
+    setShowLoader(false);
+  };
 
 
   const myfun = (ddd) => {
@@ -175,20 +205,7 @@ const Profile = ({ navigation, dispatch }) => {
   const gotoEditProfile = () => {
     navigation.navigate(ScreenNames.EDIT_PROFILE);
   };
-  function formatNumber(number) {
-    if (number) {
-      if (number >= 1000000) {
-        // Convert to millions
-        return (number / 1000000).toFixed(2) + 'M';
-      } else if (number >= 1000) {
-        // Convert to thousands
-        return (number / 1000).toFixed(2) + 'K';
-      } else {
-        // Leave the number as is
-        return number.toString();
-      }
-    }
-  }
+ 
   //UI
 
   return (
@@ -243,6 +260,14 @@ const Profile = ({ navigation, dispatch }) => {
 
               </View>
             </View>
+            <View style={{alignSelf:'center',width:'100%'}}>
+              <MyButton
+                text={'Delete My Account'}
+                onPress={Mydelete}
+                style={[styles.buttonStyle,{alignSelf:'center'}]}
+              />
+            </View>
+            
             <View style={styles.moneyContainer}>
               <View style={styles.starRow}>
                 <Image source={require('assets/images/nebulas-(nas).png')} />
@@ -534,7 +559,7 @@ const Profile = ({ navigation, dispatch }) => {
                               {rowData.map((cellData, cellIndex) => (
                                 <View style={{ height: 40, width: 100, borderWidth: 0.5, borderColor: '#000', justifyContent: 'center' }}>
                                   {cellIndex == 5 ?
-                                    <Image style={{ width: 50, height: 30, resizeMode: 'stretch' }} source={{ uri: cellData }}></Image>
+                                    <Image style={{ width: 50, height: 30, resizeMode: 'stretch',alignSelf:'center' }} source={{ uri: cellData }}></Image>
                                     :
                                     <Text style={{ flexDirection: 'row', width: 100, textAlign: 'center' }}>{cellData}</Text>
                                   }

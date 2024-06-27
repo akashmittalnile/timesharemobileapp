@@ -20,6 +20,7 @@ import { Colors, Constant, MyIcon, ScreenNames } from 'global/Index';
 import { styles } from './ForgotPasswordEnterEmailStyle';
 import MyButton from 'components/MyButton/MyButton';
 import MyTextInput from '../../components/MyTextInput/MyTextInput';
+import useKeyboard from '../../components/useKeyboard';
 
 const ForgotPasswordEnterEmail = ({
     visible,
@@ -36,6 +37,7 @@ const ForgotPasswordEnterEmail = ({
     const closeModal = () => {
         setVisibility(false);
     };
+    const isKeyboardOpen = useKeyboard();
     //UI
     return (
         <Modal
@@ -52,10 +54,11 @@ const ForgotPasswordEnterEmail = ({
             backdropColor="transparent"
             style={styles.modal}>
             <View style={styles.modalContent}>
+               
                 <Image source={require('assets/images/successful-img.png')} style={styles.mainImg} />
                 <MyText text='Forgot Password?' fontSize={22} fontFamily='medium' textColor={Colors.THEME_BLUE} style={{ marginTop: 5 }} />
                 <MyText text={`Please Enter Your Registered Email ID`} fontSize={14} fontFamily='medium' textColor={Colors.THEME_GRAY} textAlign='center' style={{ marginTop: 10,marginButtom:10 }} />
-                <MyText text={`We Will Send An 4 Digit OTP In Your Registered Email ID`} fontSize={12} textColor={'#BCBBB7'} textAlign='center' style={{ marginTop: 10 }} />
+                <MyText text={`We will send a 4 digit OTP on your registered email id`} fontSize={12} textColor={'#BCBBB7'} textAlign='center' style={{ marginTop: 10 }} />
                 <MyTextInput
                     placeholder={'Email Address'}
                     value={forgotEmail}
@@ -68,6 +71,13 @@ const ForgotPasswordEnterEmail = ({
                     onPress={handleNext}
                     style={styles.buttonStyle}
                 />
+                {isKeyboardOpen ?
+                <View style={{width:100,height:250}}  />
+                : null
+                }
+                
+
+              
             </View>
         </Modal>
     );

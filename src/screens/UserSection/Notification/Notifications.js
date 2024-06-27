@@ -39,6 +39,7 @@ const Notifications = ({navigation}) => {
   ];
   const getNotification = async () => {
     try {
+      setShowLoader(true)
       const resp = await Service.getApiWithToken(
         userToken,
         Service.GET_NOTIFICATION,
@@ -56,6 +57,7 @@ const Notifications = ({navigation}) => {
   };
   const readNotification = async () => {
     try {
+      setShowLoader(true);
       const resp = await Service.getApiWithToken(
         userToken,
         Service.read_notification,
@@ -63,6 +65,7 @@ const Notifications = ({navigation}) => {
     
       if (resp?.data?.status) {
        console.log('done',resp?.data)
+       getNotification()
       }
       setShowLoader(false);
     } catch (error) {
@@ -72,7 +75,7 @@ const Notifications = ({navigation}) => {
   };
   
   useEffect(() => {
-    setShowLoader(true);
+   
     getNotification();
    
   }, []);
@@ -84,10 +87,14 @@ const Notifications = ({navigation}) => {
     <>
       <View style={styles.container}>
         <MyHeader Title="Notifications" />
+        {notificationData.length>0 ?
         <TouchableOpacity style={{width:70,height:30,borderRadius:8,backgroundColor:Colors.THEME_BLUE,alignSelf:'flex-end',justifyContent: 'center',margin:10}}
         onPress={()=>{ readNotification()}}>
-      <Text style={{color:'#000',fontWeight:'700',textAlign:'center'}}>Clear</Text>
+      <Text style={{color:'#000',fontWeight:'700',textAlign:'center'}}>Clear All</Text>
         </TouchableOpacity>
+      :
+      null}
+        {notificationData.length>0 ?
         <View style={styles.mainView}>
           <FlatList
             data={notificationData}
@@ -98,6 +105,13 @@ const Notifications = ({navigation}) => {
             keyExtractor={(item, index) => String(index)}
           />
         </View>
+        :
+        <View style={styles.mainView}>
+         <Text style={{textAlign:'center',color:'#000',fontSize:18,fontWeight:'700',marginTop:50}}>No Data Found</Text>
+        </View>
+
+
+      }
       </View>
       <CustomLoader showLoader={showLoader} />
     </>

@@ -8,7 +8,8 @@ import MyHeader from 'components/MyHeader/MyHeader';
 import FAB_Button from 'components/FAB_Button/FAB_Button';
 //import : third parties
 import {WebView} from 'react-native-webview';
-import RNFetchBlob from 'rn-fetch-blob';
+// import RNFetchBlob from 'rn-fetch-blob';
+import RNFetchBlob from 'react-native-blob-util'
 // import : globals
 import {Colors, MyIcon, Service} from 'global/Index';
 

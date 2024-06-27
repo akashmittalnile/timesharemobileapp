@@ -23,6 +23,8 @@ export const getImageForDeveloper = devname => {
     ? ScreenNames.CLUBWYNDHAM_CONTRACT
     : devname == 'Lawrence Welk Resorts'
     ? ScreenNames.LAWRENCE_CONTRACT
+    : devname == 'Hyatt Inn'
+    ? ScreenNames.LAWRENCE_CONTRACT
     : devname == 'Holliday Inn'
     ? ScreenNames.HOLYDAYIN_CONTRACT
     : devname == 'Holiday Inn'
