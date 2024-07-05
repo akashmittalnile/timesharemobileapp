@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">364398567313-l0dim3kg2a6equ98r234gl24ilbkr9i1.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">364398567313</string>
+    <string name="google_api_key" translatable="false">AIzaSyAqx3XakmEc8IoMEUymzpyyqXV-msYoPR0</string>
+    <string name="google_app_id" translatable="false">1:364398567313:android:d3bcba695ea4144bf68430</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAqx3XakmEc8IoMEUymzpyyqXV-msYoPR0</string>
+    <string name="google_storage_bucket" translatable="false">timeshare-abb58.appspot.com</string>
+    <string name="project_id" translatable="false">timeshare-abb58</string>
+</resources>

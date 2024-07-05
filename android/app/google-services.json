@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "364398567313",
+    "project_id": "timeshare-abb58",
+    "storage_bucket": "timeshare-abb58.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364398567313:android:d3bcba695ea4144bf68430",
+        "android_client_info": {
+          "package_name": "com.timesharing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "364398567313-q6soioif52pf5k6u7jpabl43teuln81h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.timesharing",
+            "certificate_hash": "26271a1974fdaef3d2a86bbeda62b5b5f196ba91"
+          }
+        },
+        {
+          "client_id": "364398567313-l0dim3kg2a6equ98r234gl24ilbkr9i1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqx3XakmEc8IoMEUymzpyyqXV-msYoPR0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "364398567313-62128ha1ska0bbfmpe1hurtsi0sr6a1c.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "364398567313-jjod3m2gidqp15k4rctcqp1decvant2l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.TimeSharing"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

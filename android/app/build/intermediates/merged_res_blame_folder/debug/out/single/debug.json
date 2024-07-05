@@ -1,0 +1,526 @@
+[
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable_rn_edit_text_material.xml.flat",
+        "source": "com.timesharing.app-main-52:/drawable/rn_edit_text_material.xml"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowup.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowup.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_phoneicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_phoneicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_close.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_close.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_signcontractbg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_signcontractbg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_close.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_close.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_greytick.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_greytick.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xxxhdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xxxhdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_list.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_list.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_bluerighticon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_bluerighticon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_arrowleft.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_arrowleft.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_rentyourpointsbg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_rentyourpointsbg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_queryicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_queryicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_tick.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_tick.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_add.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_add.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_splashlogo.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_splashlogo.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_youropprtunity.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_youropprtunity.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_notificationicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_notificationicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_nameicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_nameicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_rectangle.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_rectangle.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_profileicon2.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_profileicon2.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-mdpi_ic_launcher.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_profilebg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_profilebg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_bluetick.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_bluetick.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_usdcoinusdc.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_usdcoinusdc.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_vacationclub.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_vacationclub.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_timesharepointbg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_timesharepointbg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_topbanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_topbanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_ftbanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_ftbanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_confirmpassword.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_confirmpassword.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_holidaybanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_holidaybanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativeelementdropdown_src_assets_down.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativeelementdropdown_src_assets_down.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xxhdpi_ic_launcher.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-mdpi_ic_launcher_round.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-mdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-hdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-hdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable_ic_launcher_background.xml.flat",
+        "source": "com.timesharing.app-main-52:/drawable/ic_launcher_background.xml"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_smalllogo.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_smalllogo.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_banner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_banner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_clubwyndhambanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_clubwyndhambanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_submitnewquerybg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_submitnewquerybg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xxhdpi_src_assets_newimages_rectangle.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xxhdpi/src_assets_newimages_rectangle.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_appleicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_appleicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-hdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-hdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_closecircle.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_closecircle.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowdown.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowdown.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_getintouchbg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_getintouchbg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_emailicon2.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_emailicon2.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_diamondbanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_diamondbanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher_round.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xxxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_starwood.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_starwood.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_tslogout.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_tslogout.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_mbanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_mbanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_profileicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_profileicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_passwordicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_passwordicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-hdpi_ic_launcher_round.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-hdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_minus.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_minus.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_bluegreenbanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_bluegreenbanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_adminicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_adminicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_dateicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_dateicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backiconmask.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backiconmask.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xxhdpi_src_assets_newimages_banner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xxhdpi/src_assets_newimages_banner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xxxhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_hatt.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_hatt.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_infocircle.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_infocircle.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_splashbg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_splashbg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_weirdarrow.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_weirdarrow.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xhdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xhdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_linkicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_linkicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_fbanner22.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_fbanner22.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_nodata.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_nodata.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_nonetwork.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_nonetwork.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_contractsicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_contractsicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_bgbanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_bgbanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_homeicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_homeicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_contractsicon2.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_contractsicon2.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_darkbackicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_darkbackicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_tick.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_tick.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_signedcontract.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_signedcontract.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowdown.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_light_icons_arrowdown.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_callicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_callicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_getintouchimage.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_getintouchimage.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_lawrencebanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_lawrencebanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_worldmark.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_worldmark.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xhdpi_ic_launcher.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xxhdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xxhdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xxhdpi_ic_launcher_round.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xxhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_submitnewquerywhitebg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_submitnewquerywhitebg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowup.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativedropdownpicker_src_themes_dark_icons_arrowup.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xxxhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xxxhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_dateofbirthicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_dateofbirthicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_emailicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_emailicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_homeicon2.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_homeicon2.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_userdefault.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_userdefault.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_rightarrow.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_rightarrow.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-hdpi_ic_launcher.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-hdpi/ic_launcher.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_documenticon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_documenticon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xhdpi_src_assets_newimages_rectangle.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xhdpi/src_assets_newimages_rectangle.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_welcomebg1.jpg.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_welcomebg1.jpg"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_aboutusbg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_aboutusbg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_bfooterbanner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_bfooterbanner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_marriot.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_marriot.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_calendaricon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_calendaricon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_welcomebg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_welcomebg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/layout_activity_maps.xml.flat",
+        "source": "com.timesharing.app-main-52:/layout/activity_maps.xml"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_redrighticon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_redrighticon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xxxhdpi_ic_launcher_foreground.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xxxhdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnativeelementdropdown_src_assets_close.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnativeelementdropdown_src_assets_close.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_choosepoints.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_choosepoints.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-mdpi_ic_launcher_foreground.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-mdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_bell.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_bell.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_updatephone.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_updatephone.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_helpandsupporticon2.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_helpandsupporticon2.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_successfulimg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_successfulimg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_nebulasnas.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_nebulasnas.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_homebg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_homebg.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xhdpi_src_assets_newimages_banner.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xhdpi/src_assets_newimages_banner.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-xhdpi_node_modules_reactnavigation_elements_src_assets_backicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-xhdpi/node_modules_reactnavigation_elements_src_assets_backicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_editicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_editicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-xhdpi_ic_launcher_round.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-xhdpi/ic_launcher_round.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_facebookicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_facebookicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_newimages_banner1.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_newimages_banner1.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/node_modules_reactnavigation_drawer_src_views_assets_toggledrawericon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/mipmap-hdpi_ic_launcher_foreground.png.flat",
+        "source": "com.timesharing.app-main-52:/mipmap-hdpi/ic_launcher_foreground.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_googleicon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_googleicon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_helpandsupporticon.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_helpandsupporticon.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_marriottvacationclublogo.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_marriottvacationclublogo.png"
+    },
+    {
+        "merged": "com.timesharing.app-merged_res-50:/drawable-mdpi_src_assets_images_helpandsupportbg.png.flat",
+        "source": "com.timesharing.app-main-52:/drawable-mdpi/src_assets_images_helpandsupportbg.png"
+    }
+]
